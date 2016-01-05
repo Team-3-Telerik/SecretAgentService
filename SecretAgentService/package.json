@@ -1,0 +1,21 @@
+{
+  "name": "secret-agent-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Team 3",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.0",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "jade": "^1.11.0",
+    "mongoose": "^4.3.4",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  }
+}
