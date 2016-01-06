@@ -17,8 +17,8 @@ module.exports = function(app) {
         res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)
     });
 
-    app.get('/signup', function (req, res) {
-        res.render('../../public/app/account/signup');
+    app.get('/:partial', function (req, res) {
+        res.render('../../public/app/account/' + req.params.partial, {currentUser: req.user});
     });
 
     app.post('/login', auth.login);

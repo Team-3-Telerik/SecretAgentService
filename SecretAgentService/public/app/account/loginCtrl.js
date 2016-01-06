@@ -5,12 +5,13 @@ app.controller('LoginCtrl', function($scope, $location, notifier, identity, auth
         auth.login(user).then(function(success) {
             if (success) {
                 notifier.success('Successful login!');
+                window.location.href = "/"
             }
             else {
                 notifier.error('Username/Password combination is not valid!');
             }
         });
-    }
+    };
 
     $scope.logout = function() {
         auth.logout().then(function() {
@@ -19,7 +20,7 @@ app.controller('LoginCtrl', function($scope, $location, notifier, identity, auth
                 $scope.user.username = '';
                 $scope.user.password = '';
             }
-            $location.path('/');
+            window.location.href = "/"
         })
     }
-})
+});

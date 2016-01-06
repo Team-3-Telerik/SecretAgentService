@@ -35,7 +35,7 @@ function init(server) {
             sio.sockets.emit('time', Date());
         }, 2000);
     }
-};
+}
 
 module.exports = {
     init: init,

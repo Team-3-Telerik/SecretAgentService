@@ -1,6 +1,10 @@
 body {
   padding-top: 80px;
 }
+#update-btn{
+  margin-right: 10px;
+}
+
 .navbar-right .navbar-form input {
   margin-right: 10px;
 }
