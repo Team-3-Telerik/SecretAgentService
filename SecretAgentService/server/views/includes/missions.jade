@@ -1,0 +1,25 @@
+extends ../index
+
+block main-content
+    .jumbotron
+        .row
+            .col-md-8.col-md-offset-2
+                .panel.panel-info
+                    .panel-heading.text-center Missions
+                    .panel-body
+                        table.table
+                                tr
+                                    th PostedBy
+                                    th Missions target
+                                    th Location
+                                    th Difficult
+                                    th Agent
+                                    th Awards
+                                each item in missions
+                                    tr
+                                        td= item.postedBy
+                                        td= item.missionTarget
+                                        td= item.location
+                                        td= item.difficult
+                                        td= item.agent
+                                        td= item.award

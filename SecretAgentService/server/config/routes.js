@@ -4,14 +4,16 @@ var auth = require('./auth'),
 
 module.exports = function(app) {
 
-    //app.get('/favicon.ico', function (req, res) {
-    //    res.sendFile(path.resolve(__dirname + '/../../favicon.ico'))
-    //});
-    //
+    app.get('/favicon.ico', function (req, res) {
+        res.sendFile(path.resolve(__dirname + '/../../favicon.ico'))
+    });
+
 
     app.get('/api/users', auth.isInRole('admin'), controllers.users.getAllUsers);
     app.post('/api/users', controllers.users.createUser);
     app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
+
+    app.get('/missions', controllers.mission.getAllMission);
 
     app.get('/partials/:partialArea/:partialName', function(req, res) {
         res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)

@@ -3,7 +3,7 @@ app.controller('SignUpCtrl', function($scope, $location, auth, notifier) {
         console.log(user);
         auth.signup(user).then(function() {
             notifier.success('Registration successful!');
-            $location.path('/');
+            window.location.href = "/"
         })
     }
 });

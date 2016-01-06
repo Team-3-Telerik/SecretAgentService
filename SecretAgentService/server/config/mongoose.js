@@ -1,9 +1,11 @@
 var mongoose = require('mongoose'),
-    user = require('../models/User');
-    message = require('../models/Message');
+    user = require('../models/User'),
+    message = require('../models/Message'),
+    mission = require('../models/Mission');
+
 
 module.exports = function(config) {
-    mongoose.connect(config.db);
+    mongoose.connect(config.mongoLab);
     var db = mongoose.connection;
 
     db.once('open', function(err) {
@@ -21,4 +23,5 @@ module.exports = function(config) {
 
     user.seedInitialUsers();
     message.init();
+    mission.seedInitialMission();
 };
