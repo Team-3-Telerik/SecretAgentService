@@ -3,6 +3,7 @@ var User = require('mongoose').model('User');
 
 module.exports = {
     createUser: function(req, res, next) {
+        console.log(req);
         var newUserData = req.body;
         newUserData.salt = encryption.generateSalt();
         newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
@@ -16,7 +17,7 @@ module.exports = {
                 if (err) {
                     res.status(400);
                     return res.send({reason: err.toString()});
-                };
+                }
 
                 res.send(user);
             })
@@ -47,4 +48,4 @@ module.exports = {
             res.send(collection);
         })
     }
-}
+};

@@ -1,5 +1,14 @@
-extends includes/layout
-block main-content
+doctype
+html
+    head
+        title Telerik Academy Courses
+        base(href="/")
+        link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap-theme.min.css")
+        link(rel="stylesheet" href="/lib/toastr/toastr.css")
+        link(rel="stylesheet" href="/css/site.css")
+    body(ng-app="app")
+
     header.nav.navbar-default.navbar-fixed-top
         .container
             .navbar-header
@@ -13,8 +22,11 @@ block main-content
                 div(ng-include="'partials/account/login'")
 
     section
-        div(ng-view)
+        block main-content
 
     footer
         p.text-center
             | &copy; Telerik Academy 2014
+
+        include ../views/includes/scripts
+        include ../views/includes/currentUser
