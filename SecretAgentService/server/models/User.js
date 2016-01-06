@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    encryption = require('../utilities/encryption');
+    encryption = require('../utilities/encryption'),
+    Schema = mongoose.Schema;
 
 var userSchema = mongoose.Schema({
     username: { type: String, require: '{PATH} is required', unique: true },
@@ -7,7 +8,7 @@ var userSchema = mongoose.Schema({
     lastName: { type: String, require: '{PATH} is required' },
     salt: String,
     hashPass: String,
-    messages: [],
+    messages: [{ type: Schema.Types.ObjectId, ref: 'Message' }],
     roles: [String]
 });
 

@@ -1,19 +1,23 @@
+'use strict';
 
 var mongoose = require('mongoose');
+var Message;
 
-var messagesSchema = mongoose.Schema({
-    title: { type: String, required: '{PATH} is required' },
-    content: { type: String, required: '{PATH} is required' },
-    date: Date,
-    from : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    to: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    read: Boolean
-});
+module.exports.init = function () {
+    var messagesSchema = new mongoose.Schema({
+        title: { type: String, required: '{PATH} is required' },
+        content: { type: String, required: '{PATH} is required' },
+        date: Date,
+        from : {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        to: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        read: Boolean
+    });
 
-var Message = mongoose.model('Message', messagesSchema);
+    Message = mongoose.model('Message', messagesSchema);
+};

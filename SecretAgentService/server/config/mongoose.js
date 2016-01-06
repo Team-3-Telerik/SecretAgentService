@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     user = require('../models/User');
+    message = require('../models/Message');
 
 module.exports = function(config) {
     mongoose.connect(config.db);
@@ -19,4 +20,5 @@ module.exports = function(config) {
     });
 
     user.seedInitialUsers();
+    message.init();
 };
