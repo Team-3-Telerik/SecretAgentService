@@ -18,3 +18,14 @@ footer p {
   border-top: 1px solid #808080;
   padding-top: 10px;
 }
+input.ng-dirty.ng-invalid {
+  background-color: pink; !important
+}
+
+input.ng-dirty.ng-valid {
+  background-color: darkseagreen; !important
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
