@@ -2,7 +2,6 @@ doctype
 html
     head
         title Telerik Academy Courses
-        base(href="/")
         link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css")
         link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap-theme.min.css")
         link(rel="stylesheet" href="/lib/toastr/toastr.css")
@@ -12,13 +11,13 @@ html
     header.nav.navbar-default.navbar-fixed-top
         .container
             .navbar-header
-                a.navbar-brand(href="#/") TA Courses
+                a.navbar-brand(href="/") TA Courses
             .navbar-collapse.collapse
                 ul.nav.navbar-nav
                     li
-                        a(href="#/") Home
+                        a(href="/") Home
                     li
-                        a(href="#/missions") Missions
+                        a(href="/missions") Missions
                 div(ng-include="'partials/account/login'")
 
     section
