@@ -7,6 +7,7 @@ var userSchema = mongoose.Schema({
     lastName: { type: String, require: '{PATH} is required' },
     salt: String,
     hashPass: String,
+    messages: [],
     roles: [String]
 });
 
