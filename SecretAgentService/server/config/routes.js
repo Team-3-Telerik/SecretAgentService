@@ -16,11 +16,11 @@ module.exports = function(app) {
     app.get('/missions', controllers.mission.getAllMission);
 
     app.get('/partials/:partialArea/:partialName', function(req, res) {
-        res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)
+        res.render('../views/' + req.params.partialArea + '/' + req.params.partialName)
     });
 
     app.get('/:partial', function (req, res) {
-        res.render('../../public/app/account/' + req.params.partial, {currentUser: req.user});
+        res.render('../views/account/' + req.params.partial, {currentUser: req.user});
     });
 
     app.post('/login', auth.login);
