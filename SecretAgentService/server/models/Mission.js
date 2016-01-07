@@ -5,8 +5,9 @@ var missionSchema = mongoose.Schema({
     location: {type: String, require: '{PATH} is required'},
     missionTarget: {type: String, require: '{PATH} is required'},
     postedBy: {type: String, require: '{PATH} is required'},
-    difficult: {type: String, require: '{PATH} is required'},
-    agent: {type: String}
+    difficult: {type: Number, require: '{PATH} is required'},
+    agent: {type: String},
+    description: {type: String}
 });
 
 var Mission = mongoose.model('Mission', missionSchema);
@@ -25,24 +26,27 @@ module.exports.seedInitialMission = function() {
                 location: 'Sofia',
                 missionTarget: 'Delqn Peevski',
                 postedBy: 'Pesho',
-                difficult: 'Very Hard',
-                agent: 'Stamat'
+                difficult: 7,
+                agent: 'Stamat',
+                description: 'Some description'
             });
             Mission.create({
                 award: 2000,
                 location: 'Plovdiv',
                 missionTarget: 'Volen Siderov',
                 postedBy: 'Stamat',
-                difficult: 'Very Hard',
-                agent: 'Ivan'
+                difficult: 5,
+                agent: 'Ivan',
+                description: 'Some description'
             });
             Mission.create({
                 award: 1500,
                 location: 'Varna',
                 missionTarget: 'Dogankata',
                 postedBy: 'Gosho',
-                difficult: 'Very Hard',
-                agent: 'Goshkata'
+                difficult: 4,
+                agent: 'Goshkata',
+                description: 'Some description'
             });
 
             console.log('Missions added to database...');

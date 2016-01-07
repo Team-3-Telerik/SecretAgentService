@@ -1,0 +1,41 @@
+extends ../index
+
+block main-content
+    .container(ng-controller="MissionsCtrl")
+        .row
+            .col-md-6.col-md-offset-3
+                form.form-horizontal(name='addMissionForm', ng-submit='addMissionForm.$valid')
+                    fieldset
+                        legend Add Mission
+                        .text-center.error(ng-show='addMissionForm.postedBy.$error.minlength || addMissionForm.postedBy.$error.maxLength') PostedBy name must be between 6 and 50 symbols
+                        .form-group
+                            label.col-lg-2.control-label(for='postedBy') PostedBy
+                            .col-lg-10
+                                input#postedBy.form-control(type='text', name='postedBy', ng-model='vm.mission.postedBy', required='required')
+                        .text-center.error(ng-show='addMissionForm.location.$error.minlength || addMissionForm.location.$error.maxLength') Location must be between 6 and 50 symbols !
+                        .form-group
+                            label.col-lg-2.control-label(for='location') Location
+                            .col-lg-10
+                                input#location.form-control(name='location', type='text', ng-model='vm.mission.location', ng-minlength='6', ng-maxlength='50', required='required', placeholder='Location')
+                        .text-center.error(ng-show='addMissionForm.missionTarget.$error.minlength') Mission target must be between 6 and 50 symbols !
+                        .form-group
+                            label.col-lg-2.control-label(for='missionTarget') Mission Target
+                            .col-lg-10
+                                input#missionTarget.form-control(name='missionTarget',ng-minlength='6', ng-maxlength='50' type='text', ng-model='mission.missionTarget', placeholder='Mission Target')
+                        .text-center.error(ng-show='addMissionForm.award.$error.min') Award must be less then 0 !
+                        .form-group
+                            label.col-lg-2.control-label(for='award') Award
+                            .col-lg-10
+                                input#award.form-control(type='number', name='userPassword', ng-model='vm.mission.award', min='0', required='required')
+                        .text-center.error(ng-show='addMissionForm.difficult.$error.min') Difficult must be less then 0 !
+                        .form-group
+                            label.col-lg-2.control-label(for='difficult') Difficult
+                            .col-lg-10
+                                input#difficult.form-control(type='number', name='difficult', ng-model='vm.mission.difficult', min='0', required='required')
+                        .form-group
+                            label.col-lg-2.control-label(for='description') Difficult
+                            .col-lg-10
+                                textarea#description.form-control(rows="4" cols="50", name='description', ng-model='vm.mission.description', min='0', required='required', placeholder='Description...')
+                        .form-group
+                            .col-lg-10.col-lg-offset-2.pull-right
+                                button.btn.btn-primary(ng-click='addMission(mission)', ng-disabled='addMissionForm.$invalid') Add

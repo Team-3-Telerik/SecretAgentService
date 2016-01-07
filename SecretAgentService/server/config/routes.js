@@ -14,6 +14,7 @@ module.exports = function(app) {
     app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
 
     app.get('/missions', controllers.mission.getAllMission);
+    app.get('/missions/add', controllers.mission.getMissionsAdd);
 
     app.get('/partials/:partialArea/:partialName', function(req, res) {
         res.render('../views/' + req.params.partialArea + '/' + req.params.partialName)

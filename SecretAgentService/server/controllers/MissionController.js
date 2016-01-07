@@ -1,6 +1,9 @@
 var Mission = require('mongoose').model('Mission');
 
 module.exports = {
+    getMissionsAdd: function (req, res) {
+        res.render('../views/missions/add-missions')
+    },
     createMission: function (req, res) {
         if (req.user._id == req.body._id || req.user.roles.indexOf('admin') > -1) {
             var newMission = req.body;
@@ -22,7 +25,7 @@ module.exports = {
                 return;
             }
 
-            res.render('../views/includes/missions', {missions : missions});
+            res.render('../views/missions/missions', {missions : missions, currentUser: req.user});
         })
     },
     getMissionById: function (req, res) {
