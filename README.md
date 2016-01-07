@@ -10,3 +10,21 @@
 10.	Private messages
 11.	Profile page
 12.	Statistics
+
+Mission – 
+Award
+	Location
+	Target name – string
+	Posted by
+	Difficult
+	Agent – string
+
+User –
+	Picture Url
+	Username
+	Email	
+	Salt	
+	Messages
+	Roles
+	HashPass	
+	Missions – collection
