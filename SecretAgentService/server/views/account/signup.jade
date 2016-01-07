@@ -1,7 +1,7 @@
 extends ../index
 
 block main-content
-    .container(ng-controller="SignUpController")
+    .container(ng-controller="SignUpController as vm")
         .row
             .col-md-6.col-md-offset-3
                 form.form-horizontal(name='registerForm', ng-submit='registerForm.$valid')
@@ -40,4 +40,4 @@ block main-content
                                 input#confirmPassword.form-control(type='password', name='confirmPassword', ng-model='user.confirmPassword', ng-minlength='6', required='required', placeholder='Confirm Password')
                         .form-group
                             .col-lg-10.col-lg-offset-2.pull-right
-                                button.btn.btn-primary(ng-click='signup(user)', ng-disabled='registerForm.$invalid || user.password != user.confirmPassword') Submit
+                                button.btn.btn-primary(ng-click='vm.signup(user)', ng-disabled='registerForm.$invalid || user.password != user.confirmPassword') Submit
