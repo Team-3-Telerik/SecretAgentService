@@ -2,49 +2,42 @@ extends ../index
 
 block main-content
     .container(ng-controller="SignUpCtrl")
-        .well
-            form.form-horizontal(name="signUpForm")
-                fieldset
-                    legend Create New User
-                    .form-group
-                        label.col-md-2.control-label(for="first-name") First Name
-                        .col-md-10
-                            input.form-control(type="text", placeholder="First Name", ng-model="user.firstName", required)
-                    .form-group
-                        label.col-md-2.control-label(for="last-name") Last Name
-                        .col-md-10
-                            input.form-control(type="text", placeholder="Last Name", ng-model="user.lastName", required)
-                    .form-group
-                        label.col-md-2.control-label(for="username") Username
-                        .col-md-10
-                            input.form-control(type="text", placeholder="Username", ng-model="user.username", required)
-                    .form-group
-                        label.col-md-2.control-label(for="password") Password
-                        .col-md-10
-                            input.form-control(type="password", placeholder="Password", ng-model="user.password", required)
-                    .pull-right
-                        button.btn.btn-primary(ng-click="signup(user)", ng-disabled="signUpForm.$invalid") Create
-                        a.btn.btn-primary(href="/") Cancel
-.row
-    .col-md-6.col-md-offset-3
-        form.form-horizontal(name='registerForm', ng-submit='registerForm.$valid')
-            fieldset
-                legend Register User
-                .text-center.error(ng-show='registerForm.userMail.$error.pattern') Email is not valid !
-                .form-group
-                    label.col-lg-2.control-label(for='inputEmail') Email
-                    .col-lg-10
-                        input#inputEmail.form-control(name='userMail', type='text', ng-model='user.email', required='required', placeholder='Email', ng-pattern='/^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/')
-                .text-center.error(ng-show='registerForm.userPassword.$error.minlength') Pasword must be at least 6 symbols long !
-                .form-group
-                    label.col-lg-2.control-label(for='inputPassword') Password
-                    .col-lg-10
-                        input#inputPassword.form-control(type='password', name='userPassword', ng-model='user.password', ng-minlength='6', required='required', placeholder='Password')
-                .text-center.error(ng-show='user.password !== user.confirmPassword && registerForm.confirmPassword.$dirty') Confirm password is not the same as password!
-                .form-group
-                    label.col-lg-2.control-label(for='confirmPassword') Confirm Password
-                    .col-lg-10
-                        input#confirmPassword.form-control(type='password', name='confirmPassword', ng-model='user.confirmPassword', ng-minlength='6', required='required', placeholder='Confirm Password')
-                .form-group
-                    .col-lg-10.col-lg-offset-2.pull-right
-                        button.btn.btn-primary(ng-click='signup(user)', ng-disabled='registerForm.$invalid || user.password != user.confirmPassword') Submit
+        .row
+            .col-md-6.col-md-offset-3
+                form.form-horizontal(name='registerForm', ng-submit='registerForm.$valid')
+                    fieldset
+                        legend Register User
+                        .text-center.error(ng-show='registerForm.inputUsername.$error.minlength || registerForm.inputUsername.$error.minlength') Username must be between 6 and 50 symbols
+                        .form-group
+                            label.col-lg-2.control-label(for='inputUsername') User Name
+                            .col-lg-10
+                                input#inputUsername.form-control(type='text', name='inputUsername', ng-model='user.username', ng-minlength='6', ng-maxlength='50' required='required', placeholder='User Name')
+                        .text-center.error(ng-show='registerForm.userMail.$error.pattern') Email is not valid !
+                        .form-group
+                            label.col-lg-2.control-label(for='inputEmail') Email
+                            .col-lg-10
+                                input#inputEmail.form-control(name='userMail', type='text', ng-model='user.email', required='required', placeholder='Email', ng-pattern='/^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/')
+                        .text-center.error(ng-show='registerForm.userPic.$error.pattern') Picture Url is not valid !
+                        .form-group
+                                label.col-lg-2.control-label(for='userPicture') Picture Url
+                                .col-lg-10
+                                    input#userPicture.form-control(name='userPic', type='text', ng-model='user.pictureUrl', placeholder='Picture Url', ng-pattern='/^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png)$/')
+                        .form-group
+                            label.col-lg-2.control-label(for='to') User Role
+                            .col-md-10
+                                select#to.form-control(ng-model='user.roles', required='required')
+                                    option(value='Agent') Agent
+                                    option(value='Commissioner') Commissioner
+                        .text-center.error(ng-show='registerForm.userPassword.$error.minlength') Pasword must be at least 6 symbols long !
+                        .form-group
+                            label.col-lg-2.control-label(for='inputPassword') Password
+                            .col-lg-10
+                                input#inputPassword.form-control(type='password', name='userPassword', ng-model='user.password', ng-minlength='6', required='required', placeholder='Password')
+                        .text-center.error(ng-show='user.password !== user.confirmPassword && registerForm.confirmPassword.$dirty') Confirm password is not the same as password!
+                        .form-group
+                            label.col-lg-2.control-label(for='confirmPassword') Confirm Password
+                            .col-lg-10
+                                input#confirmPassword.form-control(type='password', name='confirmPassword', ng-model='user.confirmPassword', ng-minlength='6', required='required', placeholder='Confirm Password')
+                        .form-group
+                            .col-lg-10.col-lg-offset-2.pull-right
+                                button.btn.btn-primary(ng-click='signup(user)', ng-disabled='registerForm.$invalid || user.password != user.confirmPassword') Submit
