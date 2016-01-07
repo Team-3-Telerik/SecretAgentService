@@ -3,13 +3,14 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var userSchema = mongoose.Schema({
-    username: { type: String, require: '{PATH} is required', unique: true },
-    firstName: { type: String, require: '{PATH} is required' },
-    lastName: { type: String, require: '{PATH} is required' },
+    username: { type: String, require: '{PATH} is required', unique: true, minlength: 6, maxlength: 50 },
+    email: { type: String, require: '{PATH} is required' },
+    pictureUrl: { type: String, require: '{PATH} is required', default: 'defauhttp://i.kinja-img.com/gawker-media/image/upload/s---_2tMDfu--/18dcr6273baymjpg.jpglt' },
     salt: String,
     hashPass: String,
     messages: [{ type: Schema.Types.ObjectId, ref: 'Message' }],
-    roles: [String]
+    roles: [String],
+    missions: [{ type: Schema.Types.ObjectId, ref: 'Mission' }]
 });
 
 userSchema.method({
@@ -38,13 +39,13 @@ module.exports.seedInitialUsers = function() {
 
             salt = encryption.generateSalt();
             hashedPwd = encryption.generateHashedPassword(salt, 'Ivaylo');
-            User.create({username: 'ivaylo.kenov', firstName: 'Ivaylo', lastName: 'Kenov', salt: salt, hashPass: hashedPwd, roles: ['admin']});
+            User.create({username: 'ivaylo.kenov', email: 'ivaylo@gmail.com', salt: salt, hashPass: hashedPwd, roles: ['admin']});
             salt = encryption.generateSalt();
             hashedPwd = encryption.generateHashedPassword(salt, 'Nikolay');
-            User.create({username: 'Nikolay.IT', firstName: 'Nikolay', lastName: 'Kostov', salt: salt, hashPass: hashedPwd, roles: ['standard']});
+            User.create({username: 'Nikolay.IT', email: 'nikolay@gmail.com', salt: salt, hashPass: hashedPwd, roles: ['standard']});
             salt = encryption.generateSalt();
             hashedPwd = encryption.generateHashedPassword(salt, 'Doncho');
-            User.create({username: 'Doncho', firstName: 'Doncho', lastName: 'Minkov', salt: salt, hashPass: hashedPwd});
+            User.create({username: 'Doncho', email: 'doncho@gmail.com', salt: salt, hashPass: hashedPwd});
             console.log('Users added to database...');
         }
     });
