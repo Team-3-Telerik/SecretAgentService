@@ -14,5 +14,5 @@
 
     }
 
-    app.controller('MissionsCtrl', ['identity',MissionsCtrl])
+    app.controller('MissionsCtrl', ['identity', MissionsCtrl])
 }());

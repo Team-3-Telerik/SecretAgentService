@@ -8,17 +8,12 @@ module.exports = function(app) {
         res.sendFile(path.resolve(__dirname + '/../../favicon.ico'))
     });
 
-
     app.get('/api/users', auth.isInRole('admin'), controllers.users.getAllUsers);
     app.post('/api/users', controllers.users.createUser);
     app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
 
     app.get('/missions', controllers.mission.getAllMission);
     app.get('/missions/add', controllers.mission.getMissionsAdd);
-
-    app.get('/partials/:partialArea/:partialName', function(req, res) {
-        res.render('../views/' + req.params.partialArea + '/' + req.params.partialName)
-    });
 
     app.get('/:partial', function (req, res) {
         res.render('../views/account/' + req.params.partial, {currentUser: req.user});
