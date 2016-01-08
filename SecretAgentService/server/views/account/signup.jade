@@ -17,6 +17,10 @@ block main-content
                             label.col-lg-2.control-label(for='inputEmail') Email
                             .col-lg-10
                                 input#inputEmail.form-control(name='userMail', type='text', ng-model='user.email', required='required', placeholder='Email', ng-pattern='/^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/')
+                        #form.form-group(ng-if='user.pictureUrl')
+                            label.col-lg-2.control-label Picture Preview
+                            .col-lg-10
+                                img(ng-src='{{user.pictureUrl}}', alt='profile picture')
                         .text-center.error(ng-show='registerForm.userPic.$error.pattern') Picture Url is not valid !
                         .form-group
                                 label.col-lg-2.control-label(for='userPicture') Picture Url
