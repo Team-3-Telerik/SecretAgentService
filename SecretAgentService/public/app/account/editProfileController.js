@@ -5,11 +5,11 @@
         var vm = this;
 
         vm.user = {
-            email : identity.currentUser.email
+            email : identity.currentUser.email,
+            pictureUrl: identity.currentUser.pictureUrl
         };
 
         vm.edit = function(user) {
-            console.log('here');
             auth.update(user).then(function() {
                 notifier.success('Profile successfully edited!');
                 window.location.href = "/"
