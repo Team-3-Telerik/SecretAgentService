@@ -10,5 +10,6 @@
             })
         }}
 
-    app.controller('SignUpController', ['auth', 'notifier', signUpUser]);
+    angular.module('app.controllers')
+        .controller('SignUpController', ['$scope', 'notifier', 'identity', 'auth', signUpUser]);
 }());

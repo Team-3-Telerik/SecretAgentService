@@ -14,5 +14,6 @@
 
     }
 
-    app.controller('MissionsCtrl', ['identity', MissionsCtrl])
+    angular.module('app.controllers')
+        .controller('MissionsCtrl', ['identity', MissionsCtrl]);
 }());
