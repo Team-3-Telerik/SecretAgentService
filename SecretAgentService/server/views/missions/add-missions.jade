@@ -1,7 +1,7 @@
 extends ../index
 
 block main-content
-    .container(ng-controller="MissionsCtrl as vm")
+    .container(ng-controller="MissionController as vm")
         .row
             .col-md-6.col-md-offset-3
                 form.form-horizontal(name='addMissionForm', ng-submit='addMissionForm.$valid')
@@ -12,11 +12,11 @@ block main-content
                             label.col-lg-2.control-label(for='postedBy') PostedBy
                             .col-lg-10
                                 input#postedBy.form-control(type='text', name='postedBy', ng-model='vm.mission.postedBy', required='required' disabled='disabled')
-                        .text-center.error(ng-show='addMissionForm.location.$error.minlength || addMissionForm.location.$error.maxLength') Location must be between 6 and 50 symbols !
+                        .text-center.error(ng-show='addMissionForm.location.$error.minlength || addMissionForm.location.$error.maxLength') Location must be between 3 and 50 symbols !
                         .form-group
                             label.col-lg-2.control-label(for='location') Location
                             .col-lg-10
-                                input#location.form-control(name='location', type='text', ng-model='vm.mission.location', ng-minlength='6', ng-maxlength='50', required='required', placeholder='Location')
+                                input#location.form-control(name='location', type='text', ng-model='vm.mission.location', ng-minlength='3', ng-maxlength='50', required='required', placeholder='Location')
                         .text-center.error(ng-show='addMissionForm.missionTarget.$error.minlength') Mission target must be between 6 and 50 symbols !
                         .form-group
                             label.col-lg-2.control-label(for='missionTarget') Mission Target

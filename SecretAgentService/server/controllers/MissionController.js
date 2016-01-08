@@ -5,13 +5,16 @@ module.exports = {
         res.render('../views/missions/add-missions', {currentUser: req.user})
     },
     createMission: function (req, res) {
-        if (req.user._id == req.body._id || req.user.roles.indexOf('admin') > -1) {
+        if (req.isAuthenticated() || req.user.roles.indexOf('admin') > -1) {
             var newMission = req.body;
-
-            Mission.save(newMission, function (err, mission) {
+            Mission.create(newMission, function (err, mission) {
                 if (err) {
                     console.log('Create mission failed: ' + err);
                 }
+
+                res.status(201)
+                    .send(mission);
+                res.end();
             })
         }
         else {
@@ -25,13 +28,13 @@ module.exports = {
                 return;
             }
 
-            res.render('../views/missions/missions', {missions : missions, currentUser: req.user});
+            res.render('../views/missions/missions', {missions: missions, currentUser: req.user});
         })
     },
     getMissionById: function (req, res) {
         if (req.user._id == req.body._id || req.user.roles.indexOf('admin') > -1) {
             Mission.find({_id: req.user._id}, function (err, mission) {
-                if(err){
+                if (err) {
                     console.log('Get mission by id failed: ' + err);
                     return;
                 }

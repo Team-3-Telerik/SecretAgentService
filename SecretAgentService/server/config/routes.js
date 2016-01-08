@@ -17,7 +17,8 @@ module.exports = function(app) {
     });
 
     app.get('/missions', controllers.mission.getAllMission);
-    app.get('/missions/add', controllers.mission.getMissionsAdd);
+    app.get('/missions/add', auth.isAuthenticated, controllers.mission.getMissionsAdd);
+    app.post('/missions/add', auth.isAuthenticated,controllers.mission.createMission);
 
     app.get('/:partial', function (req, res) {
         res.render('../views/account/' + req.params.partial, {currentUser: req.user});

@@ -3,7 +3,7 @@
 
     function missionsData(data) {
         function addMission(mission) {
-            return data.post('/missions/add', mission)
+            return data.post('missions/add', mission)
         }
 
         return {
@@ -11,6 +11,6 @@
         }
     }
 
-    angular.module('tripExchange')
+    angular.module('app.services')
         .factory('missionsData', ['data' , missionsData])
 }());

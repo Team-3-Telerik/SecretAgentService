@@ -8,7 +8,8 @@ html
         link(rel="stylesheet" href="/css/site.css")
         link(rel="icon" href="../favicon.ico" type="image/x-icon")
         link(rel="shortcut icon" href="../favicon.ico" type="image/x-icon")
-    body(ng-app="app")
+        script(type="text/javascript" src="/lib/angular/angular.js")
+    body(ng-app="app" ng-cloak)
 
     header.nav.navbar-default.navbar-fixed-top
         .container

@@ -33,5 +33,6 @@
     angular.module('app', ['ngResource', 'ngRoute', 'app.services', 'app.directives', 'app.filters', 'app.controllers'])
         .config([config])
         .run(['$rootScope', '$location', run])
-        .value('toastr', toastr);
+        .value('toastr', toastr)
+        .constant('baseServiceUrl', 'http://localhost:3000/');
 }());

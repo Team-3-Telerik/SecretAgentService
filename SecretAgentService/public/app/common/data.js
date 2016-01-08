@@ -1,15 +1,13 @@
 (function () {
     'use strict';
 
-    function data($http, $q, authorization, baseServiceUrl, notifier) {
-
-        var headers = authorization.getAuthorizationHeader();
+    function data($http, $q, baseServiceUrl, notifier) {
 
         function get(url, params) {
             var defered = $q.defer();
 
             $http
-                .get(baseServiceUrl + url, { params: params, headers: headers })
+                .get(baseServiceUrl + url, { params: params})
                 .then(function (response) {
                     defered.resolve(response.data);
                 }, function (err) {
@@ -22,7 +20,7 @@
         function getById(url) {
             var defered = $q.defer();
             $http
-                .get(baseServiceUrl + url, { headers: headers })
+                .get(baseServiceUrl + url)
                 .then(function (response) {
                     defered.resolve(response.data);
                 }, function (error) {
@@ -36,9 +34,8 @@
 
         function post(url, data) {
             var defered = $q.defer();
-
             $http
-                .post(baseServiceUrl + url, data, { headers: headers })
+                .post(baseServiceUrl + url, data)
                 .then(function (response) {
                     defered.resolve(response.data);
                 }, function (error) {
@@ -54,7 +51,7 @@
             var defered = $q.defer();
 
             $http
-                .put(baseServiceUrl + url, data, { headers: headers })
+                .put(baseServiceUrl + url, data)
                 .then(function (response) {
                     defered.resolve(response.data);
                 }, function (error) {
@@ -86,6 +83,6 @@
         }
     }
 
-    angular.module('tripExchange')
-        .factory('data', ['$http', '$q', 'authorization', 'baseServiceUrl', 'notifier', data]);
+    angular.module('app.services')
+        .factory('data', ['$http', '$q', 'baseServiceUrl', 'notifier', data]);
 }());
