@@ -11,7 +11,7 @@ block main-content
                         .form-group
                             label.col-lg-2.control-label(for='postedBy') PostedBy
                             .col-lg-10
-                                input#postedBy.form-control(type='text', name='postedBy', ng-model='vm.mission.postedBy', required='required')
+                                input#postedBy.form-control(type='text', name='postedBy', ng-model='vm.mission.postedBy', required='required' disabled='disabled')
                         .text-center.error(ng-show='addMissionForm.location.$error.minlength || addMissionForm.location.$error.maxLength') Location must be between 6 and 50 symbols !
                         .form-group
                             label.col-lg-2.control-label(for='location') Location
