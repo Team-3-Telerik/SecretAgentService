@@ -40,3 +40,12 @@ input.ng-dirty.ng-valid {
   margin-left: auto;
   margin-right: auto;
 }
+
+#target-picture{
+  width: 400px;
+  border-radius: 10px;
+}
+
+#target{
+  border-bottom: 2px solid rebeccapurple;
+}

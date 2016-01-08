@@ -42,5 +42,17 @@ module.exports = {
                 res.render();
             })
         }
+    },
+    getMissionDetails: function (req, res) {
+        if (req.isAuthenticated() || req.user.roles.indexOf('admin') > -1) {
+            Mission.find({_id: req.params.id}).exec(function (err, mission) {
+                if (err) {
+                    console.log('Get all mission failed: ' + err);
+                    return;
+                }
+
+                res.render('../views/missions/mission-details', {mission: mission[0], currentUser: req.user});
+            });
+        }
     }
 };

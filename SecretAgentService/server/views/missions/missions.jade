@@ -7,21 +7,18 @@ block main-content
                 .panel.panel-info
                     .panel-heading.text-center Missions
                     .panel-body
-                        table.table
-                                tr
-                                    th PostedBy
-                                    th Missions target
-                                    th Location
-                                    th Difficult
-                                    th Agent
-                                    th Awards
+                        table.table.table.text-center
+                                tr.table.text-center
+                                    th.text-center PostedBy
+                                    th.text-center Location
+                                    th.text-center Awards
+                                    th.text-center
                                 each item in missions
                                     tr
                                         td= item.postedBy
-                                        td= item.missionTarget
                                         td= item.location
-                                        td= item.difficult
-                                        td= item.agent
                                         td= item.award
+                                        td
+                                            a.btn.btn-primary(href="/missions/details/" + item._id) Details
             col-md-2(ng-show="vm.identity.isAuthenticated()")
                 a(href="/missions/add").btn.btn-primary Add Mission

@@ -1,0 +1,29 @@
+extends ../index
+
+block main-content
+    .jumbotron.text-center
+        .row
+            .col-md-4.col-md-offset-2
+                .row
+                    h3
+                        strong(id="target") Target
+                .row
+                    img(src=mission.targetPicture, id="target-picture")
+            .col-md-4
+                .panel.panel-warning
+                    .panel-heading
+                        h3.panel-title Details
+                    .panel-body
+                        ul.list-group
+                            li.list-group-item Commissioner:
+                                strong= mission.postedBy
+                            li.list-group-item Location:
+                                strong= mission.location
+                            li.list-group-item Mission target:
+                                strong= mission.missionTarget
+                            li.list-group-item Difficult:
+                                strong= mission.difficult
+                            li.list-group-item Description:
+                                strong= mission.description
+
+
