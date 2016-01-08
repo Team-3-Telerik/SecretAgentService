@@ -11,20 +11,22 @@
 11.	Profile page
 12.	Statistics
 
-Mission – 
-Award
-	Location
-	Target name – string
-	Posted by
-	Difficult
-	Agent – string
+Mission 
+	- Award
+	- Location
+	- Target name – string
+	- Posted by
+	- Difficult
+	- Agent – string
 
-User –
-	Picture Url
-	Username
-	Email	
-	Salt	
-	Messages
-	Roles
-	HashPass	
-	Missions – collection
+User 
+	- Picture Url
+	- Username
+	- Email	
+	- Salt	
+	- Messages
+	- Roles
+	- HashPass	
+	- Missions – collection
+	
+TODO on 403 forbidden status code from server redirect to unauthorized page
