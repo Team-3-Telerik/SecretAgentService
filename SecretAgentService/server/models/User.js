@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 var userSchema = mongoose.Schema({
     username: { type: String, require: '{PATH} is required', unique: true, minlength: 6, maxlength: 50 },
     email: { type: String, require: '{PATH} is required' },
-    pictureUrl: { type: String, require: '{PATH} is required', default: 'defauhttp://i.kinja-img.com/gawker-media/image/upload/s---_2tMDfu--/18dcr6273baymjpg.jpglt' },
+    pictureUrl: { type: String, require: '{PATH} is required', default: 'http://i.kinja-img.com/gawker-media/image/upload/s---_2tMDfu--/18dcr6273baymjpg.jpg' },
     salt: String,
     hashPass: String,
     messages: [{ type: Schema.Types.ObjectId, ref: 'Message' }],

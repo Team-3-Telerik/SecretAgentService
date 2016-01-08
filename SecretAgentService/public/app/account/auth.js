@@ -22,8 +22,7 @@
                 var updatedUser = new UsersResource(user);
                 updatedUser._id = identity.currentUser._id;
                 updatedUser.$update().then(function() {
-                    identity.currentUser.firstName = updatedUser.firstName;
-                    identity.currentUser.lastName = updatedUser.lastName;
+                    identity.currentUser = user;
                     deferred.resolve();
                 }, function(response) {
                     deferred.reject(response);
