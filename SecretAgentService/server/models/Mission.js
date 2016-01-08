@@ -24,7 +24,7 @@ module.exports.seedInitialMission = function() {
             Mission.create({
                 award: 1000,
                 location: 'Sofia',
-                missionTarget: 'Delqn Peevski',
+                missionTarget: 'Big Nasty Politician',
                 postedBy: 'Pesho',
                 difficult: 7,
                 agent: 'Stamat',
@@ -33,7 +33,7 @@ module.exports.seedInitialMission = function() {
             Mission.create({
                 award: 2000,
                 location: 'Plovdiv',
-                missionTarget: 'Volen Siderov',
+                missionTarget: 'Crazy Mad Dictator',
                 postedBy: 'Stamat',
                 difficult: 5,
                 agent: 'Ivan',
@@ -42,7 +42,7 @@ module.exports.seedInitialMission = function() {
             Mission.create({
                 award: 1500,
                 location: 'Varna',
-                missionTarget: 'Dogankata',
+                missionTarget: 'The Wolf',
                 postedBy: 'Gosho',
                 difficult: 4,
                 agent: 'Goshkata',

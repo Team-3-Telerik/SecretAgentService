@@ -5,7 +5,7 @@ module.exports = {
     development: {
         rootPath: rootPath,
         mongoLab: 'mongodb://team3:agentservice@ds035995.mongolab.com:35995/secret-agent-service',
-        db: 'mongodb://localhost/telerikacademycourses',
+        db: 'mongodb://localhost/secretagentservice-db',
         port: process.env.PORT || 3000
     },
     production: {
