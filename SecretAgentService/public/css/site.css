@@ -33,3 +33,10 @@ input.ng-dirty.ng-valid {
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
+
+#form img{
+  width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
