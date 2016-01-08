@@ -15,6 +15,6 @@
                 li(ng-show="identity.currentUser.isAdmin()")
                     a(href="/admin/users") Users
                 li(ng-show="identity.isAuthenticated()")
-                    a(href="/profile") Profile
+                    a(href="/profile/edit") Edit Profile
                 li
                     a(href="/" ng-click="logout()") Sign Out

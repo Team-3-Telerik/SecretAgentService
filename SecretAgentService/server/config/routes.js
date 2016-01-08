@@ -12,6 +12,10 @@ module.exports = function(app) {
     app.post('/api/users', controllers.users.createUser);
     app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
 
+    app.get('/profile/edit', auth.isAuthenticated, function (req, res) {
+        res.render('../views/account/edit', {currentUser: req.user});
+    });
+
     app.get('/missions', controllers.mission.getAllMission);
     app.get('/missions/add', controllers.mission.getMissionsAdd);
 
