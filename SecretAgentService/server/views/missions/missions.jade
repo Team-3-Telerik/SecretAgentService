@@ -18,7 +18,9 @@ block main-content
                                         td= item.postedBy
                                         td= item.location
                                         td= item.award
-                                        td
+                                        td(ng-if="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")
                                             a.btn.btn-primary(href="/missions/details/" + item._id) Details
-            col-md-2(ng-show="vm.identity.isAuthenticated()")
+                                        td(ng-if="vm.identity.isAuthorizedForRole('admin')")
+                                                button.btn.btn-danger(ng-click='vm.deleteMission($event)' data-value="" + item._id) Delete Mission
+            col-md-2(ng-show="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")
                 a(href="/missions/add").btn.btn-primary Add Mission

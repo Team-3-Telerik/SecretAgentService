@@ -63,6 +63,22 @@
             return defered.promise;
         }
 
+        function  del(url) {
+            var defered = $q.defer();
+        
+            $http
+                .delete(baseServiceUrl + url)
+                .then(function (response) {
+                    defered.resolve(response.data);
+                }, function (error) {
+                    error = getErrorMessage(error);
+                    notifier.error(error);
+                    defered.reject(error);
+                });
+
+            return defered.promise;
+        }
+
         function getErrorMessage(response) {
             var error = response.data.modelState;
             if (error && error[Object.keys(error)[0]][0]) {
@@ -79,7 +95,8 @@
             get: get,
             getById: getById,
             post: post,
-            put: put
+            put: put,
+            del: del
         }
     }
 
