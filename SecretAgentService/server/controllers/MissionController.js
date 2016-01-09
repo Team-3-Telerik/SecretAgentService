@@ -122,5 +122,19 @@ module.exports = {
                 })
             });
         }
+    },
+    deleteMission: function (req, res) {
+        if (req.user.roles.indexOf('admin') > -1) {
+            Mission.remove({_id: req.params.id}, function (err, mission) {
+                if (err) {
+                    console.log('Delete mission by id failed: ' + err);
+                    return;
+                }
+
+                res.status(202)
+                    .send(mission);
+                res.end();
+            });
+        }
     }
 };
