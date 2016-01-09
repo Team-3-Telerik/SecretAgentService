@@ -25,6 +25,9 @@ module.exports = function(app) {
     app.get('/admin', auth.isInRole('admin'),controllers.admin.getAdminPanel);
     app.delete('/missions/:id', auth.isInRole('admin'), controllers.mission.deleteMission);
 
+    app.get('/users/agents', controllers.listUsers.getAllAgents);
+    app.get('/users/commissioners', controllers.listUsers.getAllCommissioners);
+
     app.get('/:partial', function (req, res) {
         res.render('../views/account/' + req.params.partial, {currentUser: req.user});
     });
