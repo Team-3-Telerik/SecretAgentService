@@ -5,8 +5,6 @@
         var vm = this;
         vm.identity = identity;
 
-
-
     }
 
 
