@@ -34,8 +34,8 @@
             var missionId = event.target.getAttribute('data-value');
             missionsData.deleteMission(missionId)
                 .then(function (data) {
-                    console.log(data);
                     notifier.success('You have deleted this mission successfully');
+                    window.location.href = "/missions";
                 })
         };
     }

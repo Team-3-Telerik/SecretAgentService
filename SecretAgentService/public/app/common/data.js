@@ -65,7 +65,6 @@
 
         function  del(url) {
             var defered = $q.defer();
-        
             $http
                 .delete(baseServiceUrl + url)
                 .then(function (response) {
