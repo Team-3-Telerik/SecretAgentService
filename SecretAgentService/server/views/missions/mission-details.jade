@@ -1,7 +1,7 @@
 extends ../index
 
 block main-content
-    .jumbotron.text-center
+    .jumbotron.text-center(ng-controller="MissionController as vm")
         .row
             .col-md-4.col-md-offset-2
                 .row
@@ -25,5 +25,10 @@ block main-content
                                 strong= mission.difficult
                             li.list-group-item Description:
                                 strong= mission.description
-
+                            li.list-group-item(id="first" ng-show="vm.currentMission.agent !== undefined") Agent:
+                                strong {{vm.currentMission.agent}}
+                            if mission.agent
+                                li.list-group-item(id="second") Agent:
+                                    strong= mission.agent
+        button.btn.btn-success(ng-click="vm.acceptMission()") Accept mission
 

@@ -22,6 +22,11 @@ block main-content
                             label.col-lg-2.control-label(for='missionTarget') Mission Target
                             .col-lg-10
                                 input#missionTarget.form-control(name='missionTarget',ng-minlength='6', ng-maxlength='50' type='text', ng-model='vm.mission.missionTarget', placeholder='Mission Target')
+                        .text-center.error(ng-show='addMissionForm.userPic.$error.pattern') Picture Url is not valid !
+                        .form-group
+                            label.col-lg-2.control-label(for='targetPicture') Picture Url
+                            .col-lg-10
+                                input#targetPicture.form-control(name='targetPicture', type='text', ng-model='vm.mission.targetPicture', placeholder='Picture Url', ng-pattern='/^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png)$/')
                         .text-center.error(ng-show='addMissionForm.award.$error.min') Award must be less then 0 !
                         .form-group
                             label.col-lg-2.control-label(for='award') Award

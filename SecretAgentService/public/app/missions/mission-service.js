@@ -5,9 +5,13 @@
         function addMission(mission) {
             return data.post('missions/add', mission)
         }
+        function acceptMission(missionId, user) {
+          return data.post('missions/details/' + missionId, user)
+        }
 
         return {
-            addMission: addMission
+            addMission: addMission,
+            acceptMission: acceptMission
         }
     }
 
