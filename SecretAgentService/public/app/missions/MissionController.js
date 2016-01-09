@@ -28,7 +28,16 @@
                     vm.currentMission = mission;
                     notifier.success('You accept mission successfully');
                 })
-        }
+        };
+
+        vm.deleteMission = function(event) {
+            var missionId = event.target.getAttribute('data-value');
+            missionsData.deleteMission(missionId)
+                .then(function (data) {
+                    notifier.success('You have deleted this mission successfully');
+                    window.location.href = "/missions";
+                })
+        };
     }
 
     angular.module('app.controllers')

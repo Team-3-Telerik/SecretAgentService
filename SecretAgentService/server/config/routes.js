@@ -22,7 +22,9 @@ module.exports = function(app) {
     app.get('/missions/details/:id', auth.isAuthenticated, controllers.mission.getMissionDetails);
     app.post('/missions/details/:id', auth.isAuthenticated, controllers.mission.acceptMission);
 
-    //Here
+    app.get('/admin', auth.isInRole('admin'),controllers.admin.getAdminPanel);
+    app.delete('/missions/:id', auth.isInRole('admin'), controllers.mission.deleteMission);
+
     app.get('/users/agents', controllers.listUsers.getAllAgents);
     app.get('/users/commissioners', controllers.listUsers.getAllCommissioners);
 
