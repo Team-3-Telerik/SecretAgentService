@@ -23,46 +23,9 @@ module.exports = {
             res.send({reason: 'You do not have permissions!'})
         }
     },
-    getAllMission: function (req, res) {
-
-        Mission.find({}).exec(function (err, missions) {
-            if (err) {
-                console.log('Get all mission failed: ' + err);
-                return;
-            }
-
-            res.render('../views/missions/missions', {missions: missions, currentUser: req.user});
-        })
-    },
-    getMissionById: function (req, res) {
-        if (req.user._id == req.body._id || req.user.roles.indexOf('admin') > -1) {
-            Mission.find({_id: req.user._id}, function (err, mission) {
-                if (err) {
-                    console.log('Get mission by id failed: ' + err);
-                    return;
-                }
-
-                res.render();
-            })
-        }
-    },
-    getMissionDetails: function (req, res) {
-        if (req.isAuthenticated() || req.user.roles.indexOf('admin') > -1) {
-            Mission.find({_id: req.params.id}).exec(function (err, mission) {
-                if (err) {
-                    console.log('Get all mission failed: ' + err);
-                    return;
-                }
-
-                res.render('../views/missions/mission-details', {mission: mission[0], currentUser: req.user});
-            });
-        }
-    },
-    getFilteredMissions: function (req, res) {
+    getAllMissions: function (req, res) {
         var query = {};
         var sort = {};
-
-        console.log(req.query);
 
         if(req.query.location){
             query = {location: req.query.location}
@@ -84,6 +47,18 @@ module.exports = {
 
             res.render('../views/missions/missions', {missions: missions, currentUser: req.user});
         })
+    },
+    getMissionDetails: function (req, res) {
+        if (req.isAuthenticated() || req.user.roles.indexOf('admin') > -1) {
+            Mission.find({_id: req.params.id}).exec(function (err, mission) {
+                if (err) {
+                    console.log('Get all mission failed: ' + err);
+                    return;
+                }
+
+                res.render('../views/missions/mission-details', {mission: mission[0], currentUser: req.user});
+            });
+        }
     },
     acceptMission: function (req, res) {
         if (req.isAuthenticated() || req.user.roles.indexOf('Agent') > -1) {
