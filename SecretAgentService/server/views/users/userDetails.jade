@@ -1,0 +1,46 @@
+extends ../index
+
+block main-content
+    .jumbotron.text-center(ng-controller="UserDetailsController as vm")
+        .row
+            .col-md-4.col-md-offset-2
+
+                .row
+                    img.user-details-pic.img-circle.img-responsive(src="" + user.pictureUrl)
+            .col-md-4
+                .panel.panel-warning
+                    .panel-heading
+                        h3.panel-title Details
+                    .panel-body
+                        ul.list-group
+                            li.list-group-item Name:
+                                strong= user.username
+                            li.list-group-item Role:
+                                strong= user.roles
+                            li.list-group-item Contacts:
+                                strong= user.email
+                            li.list-group-item Missions Completed:
+                                strong= user.missions.length
+                        a.btn.btn-success(href="/") Send message
+    .row
+        .col-md-8.col-md-offset-2
+            .panel.panel-info
+                .panel-heading.text-center
+                    if user.roles == "Agent"
+                        h3= "Missions accepted"
+                    else
+                        h3= "Missions offered"
+                .panel-body
+                    table.table.table.text-center
+                        tr.table.text-center
+                            th.text-center PostedBy
+                            th.text-center Location
+                            th.text-center Awards
+                            th.text-center Details
+                        each item in userMissions
+                            tr
+                                td= item.postedBy
+                                td= item.location
+                                td= item.award
+                                td
+                                    a.btn.btn-primary(href="/missions/details/" + item._id) Details

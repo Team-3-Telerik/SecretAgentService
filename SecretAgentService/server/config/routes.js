@@ -27,6 +27,7 @@ module.exports = function(app) {
 
     app.get('/users/agents', controllers.listUsers.getAllAgents);
     app.get('/users/commissioners', controllers.listUsers.getAllCommissioners);
+    app.get('/users/details/:id', auth.isAuthenticated, controllers.users.getUserDetails);
 
     app.get('/:partial', function (req, res) {
         res.render('../views/account/' + req.params.partial, {currentUser: req.user});
