@@ -2,6 +2,30 @@ extends ../index
 
 block main-content
     .jumbotron(ng-controller="MissionController as vm")
+        .row.text-center
+            col-md-2(ng-show="vm.identity.isAuthenticated()")
+                a(href="/missions/add", style="margin-bottom: 20px").btn.btn-primary Add Mission
+        form.row(ng-show='vm.identity.isAuthenticated()' action="/missions")
+            .col-md-3.col-md-offset-2
+                .form-group
+                    .text-center
+                        label.control-label(for='sort') Sort
+                    div
+                        select#sort.form-control(name="orderBy")
+                            option(value='')
+                            option(value='award') Award
+                            option(value='difficult') Difficult
+            .col-md-3
+                .form-group
+                    .text-center
+                        label.control-label(for='sort') Search Location
+                    div
+                        input#location-search.form-control(placeholder='Location search', type='text' name="location")
+            .col-md-3
+                .form-group
+                    button#search-btn.btn.btn-info(type="submit"  style="margin-top: 25px") Filter
+
+
         .row
             .col-md-8.col-md-offset-2
                 .panel.panel-info
