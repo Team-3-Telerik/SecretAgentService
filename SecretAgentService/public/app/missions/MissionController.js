@@ -28,7 +28,7 @@
                     vm.currentMission = mission;
                     notifier.success('You accept mission successfully');
                 })
-        }
+        };
     }
 
     angular.module('app.controllers')

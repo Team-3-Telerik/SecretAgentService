@@ -49,3 +49,12 @@ input.ng-dirty.ng-valid {
 #target{
   border-bottom: 2px solid rebeccapurple;
 }
+
+#location-search{
+  background-color: white;
+}
+
+#search-btn{
+  margin-top: 25px;
+  width: 110px;
+}

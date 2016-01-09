@@ -24,6 +24,7 @@ module.exports = {
         }
     },
     getAllMission: function (req, res) {
+
         Mission.find({}).exec(function (err, missions) {
             if (err) {
                 console.log('Get all mission failed: ' + err);
@@ -46,16 +47,43 @@ module.exports = {
         }
     },
     getMissionDetails: function (req, res) {
-            if (req.isAuthenticated() || req.user.roles.indexOf('admin') > -1) {
-                Mission.find({_id: req.params.id}).exec(function (err, mission) {
-                    if (err) {
-                        console.log('Get all mission failed: ' + err);
-                        return;
-                    }
+        if (req.isAuthenticated() || req.user.roles.indexOf('admin') > -1) {
+            Mission.find({_id: req.params.id}).exec(function (err, mission) {
+                if (err) {
+                    console.log('Get all mission failed: ' + err);
+                    return;
+                }
 
-                    res.render('../views/missions/mission-details', {mission: mission[0], currentUser: req.user});
-                });
+                res.render('../views/missions/mission-details', {mission: mission[0], currentUser: req.user});
+            });
+        }
+    },
+    getFilteredMissions: function (req, res) {
+        var query = {};
+        var sort = {};
+
+        console.log(req.query);
+
+        if(req.query.location){
+            query = {location: req.query.location}
+        }
+
+        if(req.query.orderBy == 'award'){
+            sort = {award : -1};
+        }
+
+        if(req.query.orderBy == 'difficult'){
+            sort = {difficult: -1};
+        }
+
+        Mission.find(query).sort(sort).limit(10).exec(function (err, missions) {
+            if (err) {
+                console.log('Get all mission failed: ' + err);
+                return;
             }
+
+            res.render('../views/missions/missions', {missions: missions, currentUser: req.user});
+        })
     },
     acceptMission: function (req, res) {
         if (req.isAuthenticated() || req.user.roles.indexOf('Agent') > -1) {
@@ -78,12 +106,12 @@ module.exports = {
                     currentUser.missions.push(currentMission.id);
 
                     Mission.update({_id: currentMission._id}, currentMission, function (err) {
-                        if(err){
-                            console.log('Update mission failed: ' +  err);
+                        if (err) {
+                            console.log('Update mission failed: ' + err);
                         }
                     });
                     User.update({_id: currentUser._id}, currentUser, function (err) {
-                        if(err){
+                        if (err) {
                             console.log('Update user failed: ' + err);
                         }
                     });

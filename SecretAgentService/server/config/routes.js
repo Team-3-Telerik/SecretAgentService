@@ -16,7 +16,7 @@ module.exports = function(app) {
         res.render('../views/account/edit', {currentUser: req.user});
     });
 
-    app.get('/missions', controllers.mission.getAllMission);
+    app.get('/missions', controllers.mission.getFilteredMissions);
     app.get('/missions/add', auth.isAuthenticated, controllers.mission.getMissionsAdd);
     app.post('/missions/add', auth.isAuthenticated, controllers.mission.createMission);
     app.get('/missions/details/:id', auth.isAuthenticated, controllers.mission.getMissionDetails);
