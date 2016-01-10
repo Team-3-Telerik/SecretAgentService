@@ -12,7 +12,9 @@
         vm.edit = function(user) {
             auth.update(user).then(function() {
                 notifier.success('Profile successfully edited!');
-                window.location.href = "/"
+                setInterval(function () {
+                    window.location.href = "/";
+                }, 500);
             })
         }}
 

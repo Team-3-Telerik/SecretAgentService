@@ -6,7 +6,9 @@
             auth.login(user).then(function (success) {
                 if (success) {
                     notifier.success('Successful login!');
-                    window.location.href = "/"
+                    setInterval(function () {
+                        window.location.href = "/";
+                    }, 500);
                 }
                 else {
                     notifier.error('Username/Password combination is not valid!');
@@ -21,7 +23,9 @@
                     $scope.user.username = '';
                     $scope.user.password = '';
                 }
-                window.location.href = "/"
+                setInterval(function () {
+                    window.location.href = "/";
+                }, 500);
             })
         }
     }
