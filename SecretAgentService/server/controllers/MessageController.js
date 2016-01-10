@@ -7,7 +7,6 @@ var clients = require('../config/socket').clients;
 
 module.exports = {
     getInbox : function (req, res, next) {
-        // GET /api/messages/inbox
         var currentUser = req.user;
         Message.find({ 'to': currentUser._id })
             .populate('from to', 'username firstName lastName imageUrl')
@@ -17,7 +16,11 @@ module.exports = {
                     return console.log('Messages could not be loaded: ' + err);
                 }
 
-                res.send(messages);
+                // res.send(messages);
+                res.render('../views/messages/inbox', {
+                    messages: messages,
+                    currentUser: req.user
+                });
                 // Mark as read after sent
                 messages.forEach(function (m) {
                     m.read = true;
@@ -26,7 +29,6 @@ module.exports = {
             });
     },
     sendMessage: function (req, res, next) {
-        //api/messages/send/:username
         var sender = req.user;
         User.findOne({ username: req.params.username }).exec(function (err, receiver) {
             if (receiver) {
