@@ -26,9 +26,4 @@ block main-content
                                     td(ng-show="vm.identity.isAuthenticated()")
                                         a.btn.btn-success(href="/") Send
 
-        .row.text-center
-            ul.pagination
-                - for (var i = 1; i <= clientPages; i++){
-                li
-                    a(href='/users/commissioners?page=' + i)= i
-                -}
+

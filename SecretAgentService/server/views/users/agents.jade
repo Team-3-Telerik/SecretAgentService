@@ -25,10 +25,5 @@ block main-content
                                         a.btn.btn-primary(href="/users/details/" + item._id) Details
                                     td(ng-show="vm.identity.isAuthenticated()")
                                         a.btn.btn-success(href="/") Send
-        .row.text-center
-            ul.pagination
-                - for (var i = 1; i <= clientPages; i++){
-                li
-                    a(href='/users/agents?page=' + i)= i
-                -}
+
 
