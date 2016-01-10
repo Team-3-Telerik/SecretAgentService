@@ -28,5 +28,10 @@ block main-content
                                         button.btn.btn-danger(ng-click='vm.deleteUser($event)' data-value="" + item._id data-adress="agents") Delete
                                     td(ng-show="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")
                                         a.btn.btn-success(href="/") Send
-
+        .row.text-center
+            ul.pagination
+                - for (var i = 1; i <= clientPages; i++){
+                li
+                    a(href='/users/agents?page=' + i)= i
+                -}
 

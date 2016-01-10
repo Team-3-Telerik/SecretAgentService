@@ -64,8 +64,6 @@ module.exports = {
 
                 Mission
                     .find({_id: {$in: user[0].missions}})
-                    .skip(((req.query.page || DEFAULT_PAGE)-1) * DEFAULT_PAGE_SIZE)
-                    .limit(DEFAULT_PAGE_SIZE)
                     .exec(function (err, missions) {
                         if (err) {
                             console.log('Get all users failed: ' + err);
