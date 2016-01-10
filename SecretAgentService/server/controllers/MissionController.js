@@ -1,5 +1,6 @@
 var Mission = require('mongoose').model('Mission'),
-    User = require('mongoose').model('User');
+    User = require('mongoose').model('User'),
+    clientPages;
 
 
 module.exports = {
@@ -24,29 +25,45 @@ module.exports = {
         }
     },
     getAllMissions: function (req, res) {
-        var query = {};
-        var sort = {};
+        var query = {},
+            sort = {},
+            NUMBER_OF_ITEMS = 10,
+            page = req.query.page || 1;
 
-        if(req.query.location){
+        if (req.query.location) {
             query = {location: req.query.location}
         }
 
-        if(req.query.orderBy == 'award'){
-            sort = {award : -1};
+        if (req.query.orderBy == 'award') {
+            sort = {award: -1};
         }
 
-        if(req.query.orderBy == 'difficult'){
+        if (req.query.orderBy == 'difficult') {
             sort = {difficult: -1};
         }
 
-        Mission.find(query).sort(sort).limit(10).exec(function (err, missions) {
-            if (err) {
-                console.log('Get all mission failed: ' + err);
-                return;
-            }
+        Mission
+            .find(query)
+            .sort(sort)
+            .skip(NUMBER_OF_ITEMS * (page - 1))
+            .limit(10)
+            .exec(function (err, missions) {
+                if (err) {
+                    console.log('Get all mission failed: ' + err);
+                    return;
+                }
 
-            res.render('../views/missions/missions', {missions: missions, currentUser: req.user});
-        })
+                if (!clientPages) {
+                    Mission.find({}).exec(function (err, allMissions) {
+                        clientPages = Math.ceil(allMissions.length / 10);
+                        res.render('../views/missions/missions', {missions: missions, currentUser: req.user, clientPages: clientPages});
+                        console.log('here');
+                    })
+                }
+                else {
+                    res.render('../views/missions/missions', {missions: missions, currentUser: req.user, clientPages: clientPages});
+                }
+            });
     },
     getMissionDetails: function (req, res) {
         if (req.isAuthenticated() || req.user.roles.indexOf('admin') > -1) {

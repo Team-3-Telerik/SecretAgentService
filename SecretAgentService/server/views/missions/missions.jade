@@ -46,5 +46,11 @@ block main-content
                                             a.btn.btn-primary(href="/missions/details/" + item._id) Details
                                         td(ng-if="vm.identity.isAuthorizedForRole('admin')")
                                                 button.btn.btn-danger(ng-click='vm.deleteMission($event)' data-value="" + item._id) Delete Mission
-            col-md-2(ng-show="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")
-                a(href="/missions/add").btn.btn-primary Add Mission
+        .row.text-center
+            ul.pagination
+                - for (var i = 1; i <= clientPages; i++){
+                li
+                    a(href='/missions?page=' + i)= i
+                -}
+
+
