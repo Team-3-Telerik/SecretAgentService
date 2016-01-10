@@ -1,0 +1,20 @@
+extends ../index
+
+block main-content
+    .container(ng-controller="MessageController as vm")
+        .row
+            .col-md-6.col-md-offset-3
+                form.form-horizontal(name='sendMessageForm')
+                    fieldset
+                        legend Send Message
+                        .form-group
+                            label.col-lg-2.control-label(for='title') Title
+                            .col-lg-10
+                                input#title.form-control(type='text', name='title', ng-model='vm.message.title', required='required' disabled='disabled')
+                        .form-group
+                            label.col-lg-2.control-label(for='message') Message
+                            .col-lg-10
+                                textarea#message.form-control(rows="4" cols="50", name='message', ng-model='vm.message.content', required='required', placeholder='Message content...' )
+                        .form-group
+                            .col-lg-10.col-lg-offset-2.pull-right
+                                button.btn.btn-primary(ng-click='vm.sendMesssage(vm.message)', ng-disabled='sendMessageForm.$invalid') Add

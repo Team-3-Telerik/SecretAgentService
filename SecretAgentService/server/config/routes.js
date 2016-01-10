@@ -33,7 +33,10 @@ module.exports = function(app) {
     app.get('/messages/inbox', auth.isAuthenticated, controllers.messages.getInbox);
     app.get('/messages/sent', auth.isAuthenticated, controllers.messages.getSent);
     app.get('/messages/:id', auth.isAuthenticated, controllers.messages.getMessageById);
-    app.post('/messages/send/:username', auth.isAuthenticated, controllers.messages.sendMessage);
+    app.post('/messages/send', auth.isAuthenticated, controllers.messages.sendMessage);
+    app.get('/messages/send', function (req, res) {
+        res.render('../views/messages/sent', {currentUser: req.user});
+    });
 
     app.get('/:partial', function (req, res) {
         res.render('../views/account/' + req.params.partial, {currentUser: req.user});
