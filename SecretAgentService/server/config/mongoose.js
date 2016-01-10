@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 
 
 module.exports = function(config) {
-    mongoose.connect(config.db);
+    mongoose.connect(config.mongoLab);
     var db = mongoose.connection;
 
     db.once('open', function(err) {
