@@ -29,7 +29,7 @@ module.exports = {
                                 currentUser: req.user,
                                 clientPages: clientPages
                             });
-                            console.log('paging users success!');
+                            
                         })
                 }
                 else {
@@ -68,7 +68,7 @@ module.exports = {
                                 currentUser: req.user,
                                 clientPages: clientPages
                             });
-                            console.log('paging commissioners success!');
+
                         })
                 }
                 else {
