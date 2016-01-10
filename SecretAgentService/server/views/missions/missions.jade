@@ -4,7 +4,7 @@ block main-content
     .jumbotron(ng-controller="MissionController as vm")
         .row.text-center
             h2 Missions
-            col-md-2(ng-show="vm.identity.isAuthenticated()")
+            col-md-2(ng-show="vm.identity.isAuthorizedForRole('Commissioner')")
                 a(href="/missions/add", style="margin-bottom: 20px").btn.btn-primary Add Mission
         form.row(ng-show='vm.identity.isAuthenticated()' action="/missions")
             .col-md-3.col-md-offset-2

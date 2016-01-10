@@ -32,6 +32,11 @@ module.exports = function(app) {
     app.get('/users/commissioners', controllers.listUsers.getAllCommissioners);
     app.get('/users/details/:id', auth.isAuthenticated, controllers.users.getUserDetails);
 
+    app.get('/messages/inbox', auth.isAuthenticated, controllers.messages.getInbox);
+    app.get('/messages/sent', auth.isAuthenticated, controllers.messages.getSent);
+    app.get('/messages/:id', auth.isAuthenticated, controllers.messages.getMessageById);
+    app.post('/messages/send/:username', auth.isAuthenticated, controllers.messages.sendMessage);
+
     app.get('/:partial', function (req, res) {
         res.render('../views/account/' + req.params.partial, {currentUser: req.user});
     });
