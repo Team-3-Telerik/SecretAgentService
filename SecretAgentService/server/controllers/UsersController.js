@@ -52,8 +52,6 @@ module.exports = {
         })
     },
     getUserDetails: function (req, res) {
-        var userMisssions = [];
-
         User
             .find({_id: req.params.id})
             .exec(function (err, user) {

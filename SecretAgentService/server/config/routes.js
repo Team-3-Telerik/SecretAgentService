@@ -12,6 +12,8 @@ module.exports = function(app) {
     app.post('/api/users', controllers.users.createUser);
     app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
 
+    app.get('/api/statistics', controllers.statistics.getStatistics);
+
     app.get('/profile/edit', auth.isAuthenticated, function (req, res) {
         res.render('../views/account/edit', {currentUser: req.user});
     });
