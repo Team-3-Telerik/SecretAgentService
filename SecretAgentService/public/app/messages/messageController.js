@@ -12,6 +12,9 @@
         }
 
         vm.sendMesssage = function (message) {
+            console.log(vm.message);
+            console.log(message);
+            debugger;
             messageData.sendMessage(message)
                 .then(function () {
                     notifier.success('Message sent successfully');

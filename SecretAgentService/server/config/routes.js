@@ -32,7 +32,7 @@ module.exports = function(app) {
 
     app.get('/messages/inbox', auth.isAuthenticated, controllers.messages.getInbox);
     app.get('/messages/send', function (req, res) {
-        res.render('../views/messages/sent', {currentUser: req.user});
+        res.render('../views/messages/send', {currentUser: req.user});
     });
     app.post('/messages/send', auth.isAuthenticated, controllers.messages.sendMessage);
 
