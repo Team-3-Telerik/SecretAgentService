@@ -3,9 +3,12 @@
 
     function listUsersData(data) {
 
+        function deleteUser(userId) {
+            return data.del('users/' + userId)
+        }
 
         return {
-
+            deleteUser: deleteUser
         }
 
     }

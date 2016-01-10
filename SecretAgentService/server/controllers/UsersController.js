@@ -51,7 +51,6 @@ module.exports = {
             res.send(collection);
         })
     },
-
     getUserDetails: function (req, res) {
         var userMisssions = [];
 
@@ -79,5 +78,22 @@ module.exports = {
                     });
             });
 
+    },
+    deleteUser: function (req, res) {
+        if (req.user.roles.indexOf('admin') > -1) {
+            User.remove({_id: req.params.id}, function (err, user) {
+                if (err) {
+                    console.log('Delete user by id failed: ' + err);
+                    return;
+                }
+
+                res.status(202)
+                    .send(user);
+                res.end();
+            });
+        }
+        else {
+            res.send({reason: 'You do not have permissions!'})
+        }
     }
 };
