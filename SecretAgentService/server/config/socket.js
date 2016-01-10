@@ -20,12 +20,22 @@ function init(server) {
         handshake: true
     }));
 
+
+
     sio.sockets
         .on('connection', function (socket) {
             var username = socket.decoded_token.username;
             console.log(username, 'connected');
+
+            clients.on('send message', function (data) {
+                sio.sockets.emit('new message', data);
+                console.log('neshto stava mai a');
+                socket.broadcast.emit('new message', data);
+            });
+
             clients[username] = socket;
             socket.on('ping', function (m) {
+                console.log('ping pong');
                 socket.emit('pong', m);
             });
         });
@@ -41,4 +51,4 @@ module.exports = {
     init: init,
     clients: clients,
     getToken: getToken
-}
+};

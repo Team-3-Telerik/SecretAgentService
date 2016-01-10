@@ -1,0 +1,22 @@
+extends ../index
+
+block main-content
+        .row.text-cente
+            .panel.panel-primary.col-md-offset-2.col-lg-8
+                .panel-heading
+                    h3.panel-title Live Chat
+                .panel-body
+                    .row
+                        #messagesBox.col-md-12
+                    .row
+                        form#target(dataUser=currentUser.username)
+                            .form-group
+                                textarea#messageToSend.col-md-10(placeholder='Message')
+                                input.btn.btn-primary.col-md-2(type="Submit" value="Send")
+block page-scripts
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js")
+    script(src='http://cdn.pubnub.com/pubnub-3.7.15.min.js')
+    script(type="text/javascript" src="/app/chat/chatManager.js")
+    script(type="text/javascript" src="/app/chat/publisher.js")
+    script(type="text/javascript" src="/app/chat/initializer.js")
+

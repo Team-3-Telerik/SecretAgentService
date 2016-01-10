@@ -37,6 +37,12 @@ module.exports = function(app) {
     app.get('/messages/:id', auth.isAuthenticated, controllers.messages.getMessageById);
     app.post('/messages/send/:username', auth.isAuthenticated, controllers.messages.sendMessage);
 
+    app.get('/chat',auth.isAuthenticated, function (req, res) {
+        res.render('../views/chat/chat',{currentUser: req.user});
+    });
+
+
+
     app.get('/:partial', function (req, res) {
         res.render('../views/account/' + req.params.partial, {currentUser: req.user});
     });
