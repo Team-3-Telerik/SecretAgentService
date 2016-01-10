@@ -4,7 +4,7 @@
     function messageData(data) {
 
         function sendMessage(message) {
-            return data.post('/messages/send', message)
+            return data.post('messages/send', message)
         }
 
         return {

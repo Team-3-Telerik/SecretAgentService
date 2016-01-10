@@ -65,20 +65,34 @@ module.exports = {
     sendMessage: function (req, res) {
         if (req.isAuthenticated() || req.user.roles.indexOf('admin') > -1) {
 
-            if (req.body.from._id.equals(req.body.to._id)) {
+            console.log(req.body);
+            if (req.body.from === req.body.to) {
                 return res.status(404).send({message: 'You cannot send message to your self!'});
             }
 
-            var newMessage = req.body;
-            Message.create(newMessage, function (err, message) {
+            var data = req.body;
+
+            var newMessage = new Message({
+                title: data.title,
+                content: data.content,
+                date: new Date(),
+                from: data.from,
+                to: data.to,
+                read: false
+            });
+
+            newMessage.save(function (err) {
                 if (err) {
-                    console.log('Send mission failed: ' + err);
+                    res.status(400).send(err);
+                    return console.log('Error in saving message' + err);
                 }
 
-                res.status(201)
-                    .send(message);
-                res.end();
-            })
+                res.send(newMessage);
+                if(clients[receiver.username])
+                {
+                    clients[receiver.username].emit('newMessage', { from: sender.username });
+                }
+            });
         }
         else {
             res.send({reason: 'You do not have permissions!'})

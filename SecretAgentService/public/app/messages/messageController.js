@@ -1,25 +1,26 @@
 (function () {
     'use strict';
 
-    function MessageController(identity, messageData, notifier) {
+    function MessageController(identity, messageData, notifier ) {
         var vm = this;
         vm.identity = identity;
 
         if (identity.currentUser) {
             vm.message = {
-                postedBy: identity.currentUser.username
+                from: identity.currentUser._id
             };
         }
 
         vm.sendMesssage = function (message) {
-            console.log(vm.message);
+            var toId = window.location.href.split('/');
+            console.log(toId);
+            message.to = toId[5];
             console.log(message);
-            debugger;
             messageData.sendMessage(message)
                 .then(function () {
                     notifier.success('Message sent successfully');
                     setInterval(function () {
-                        window.location.href = "/";
+                        // window.location.href = "/";
                     }, 500)
                 })
         };
