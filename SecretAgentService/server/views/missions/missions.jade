@@ -45,7 +45,7 @@ block main-content
                                         td= item.award
                                         td= item.difficult
                                         td(ng-if="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")
-                                            a.btn.btn-primary(href="/missions/details/" + item._id) Details
+                                            a.btn.btn-primary.animsition-link(href="/missions/details/" + item._id, data-animsition-out-class="fade-out-right") Details
                                         td(ng-if="vm.identity.isAuthorizedForRole('admin')")
                                                 button.btn.btn-danger(ng-click='vm.deleteMission($event)' data-value="" + item._id) Delete Mission
         .row.text-center

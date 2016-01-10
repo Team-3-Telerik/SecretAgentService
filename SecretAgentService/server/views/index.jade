@@ -9,6 +9,7 @@ html
         link(rel="icon" href="../favicon.ico" type="image/x-icon")
         link(rel="shortcut icon" href="../favicon.ico" type="image/x-icon")
         script(type="text/javascript" src="/lib/angular/angular.js")
+        link(rel='stylesheet', href='/lib/page-animation/dist/css/animsition.min.css')
     body(ng-app="app" ng-cloak)
 
     header.nav.navbar-default.navbar-fixed-top
@@ -18,19 +19,20 @@ html
             .navbar-collapse.collapse
                 ul.nav.navbar-nav
                     li
-                        a(href="/missions") Missions
+                        a.animsition-link(href="/missions" data-animsition-out-class="fade-out-right") Missions
                     li
-                        a(href="/users/agents") Agents
+                        a.animsition-link(href="/users/agents" data-animsition-out-class="fade-out-left") Agents
                     li
-                        a(href="/users/commissioners") Commissioners
+                        a.animsition-link(href="/users/commissioners" data-animsition-out-class="fade-out-right") Commissioners
                 div(ng-include="'/login'")
 
-    section
+    section.animsition
         block main-content
 
     footer
         p.text-center
             | &copy; Telerik Academy 2015/2016 Teamwork
+
 
         include ../views/includes/scripts
         include ../views/includes/currentUser
