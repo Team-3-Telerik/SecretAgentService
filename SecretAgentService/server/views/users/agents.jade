@@ -12,8 +12,9 @@ block main-content
                                 th.text-center Picture
                                 th.text-center Agent
                                 th.text-center Missions Taken
-                                th.text-center(ng-show="vm.identity.isAuthenticated()") Details
-                                th.text-center(ng-show="vm.identity.isAuthenticated()") Send message
+                                th.text-center(ng-show="vm.identity.isAuthorizedForRole('admin')") Delete Agent
+                                th.text-center(ng-show="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')") Details
+                                th.text-center(ng-show="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')") Send message
                                 th.text-center
                             each item in agents
                                 tr
@@ -21,9 +22,11 @@ block main-content
                                         img.user-img.img-circle.img-responsive(src="" + item.pictureUrl)
                                     td= item.username
                                     td= item.missions.length
-                                    td(ng-show="vm.identity.isAuthenticated()")
-                                        a.btn.btn-primary(href="/users/details/" + item._id) Details
-                                    td(ng-show="vm.identity.isAuthenticated()")
+                                    td(ng-if="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")
+                                        a.btn.btn-primary(href="/missions/details/" + item._id) Details
+                                    td(ng-if="vm.identity.isAuthorizedForRole('admin')")
+                                        button.btn.btn-danger(ng-click='vm.deleteUser($event)' data-value="" + item._id data-adress="agents") Delete
+                                    td(ng-show="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")
                                         a.btn.btn-success(href="/") Send
 
 
