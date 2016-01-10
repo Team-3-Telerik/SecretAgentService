@@ -8,7 +8,9 @@
             console.log('here');
             auth.signup(user).then(function() {
                 notifier.success('Registration successful!');
-                window.location.href = "/"
+                setInterval(function () {
+                    window.location.href = "/";
+                }, 1000);
             })
         }}
 

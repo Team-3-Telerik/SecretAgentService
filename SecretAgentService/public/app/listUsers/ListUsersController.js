@@ -12,7 +12,9 @@
             listUsersData.deleteUser(userId)
                 .then(function (data) {
                     notifier.success('You have deleted this user successfully');
-                    window.location.href = "/users/" + adress;
+                    setInterval(function () {
+                        window.location.href = "/users/" + adress;
+                    }, 500);
                 })
         };
     }

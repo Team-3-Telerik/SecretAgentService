@@ -18,7 +18,7 @@
                     notifier.success('Mission add successfully');
                     setInterval(function () {
                         window.location.href = "/missions";
-                    }, 1000)
+                    }, 500)
                 })
         };
         vm.acceptMission = function () {
@@ -35,7 +35,9 @@
             missionsData.deleteMission(missionId)
                 .then(function (data) {
                     notifier.success('You have deleted this mission successfully');
-                    window.location.href = "/missions";
+                    setInterval(function () {
+                        window.location.href = "/missions";
+                    }, 500);
                 })
         };
     }
