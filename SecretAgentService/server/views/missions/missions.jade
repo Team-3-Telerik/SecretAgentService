@@ -33,15 +33,17 @@ block main-content
                     .panel-body
                         table.table.table.text-center
                                 tr.table.text-center
-                                    th.text-center PostedBy
+                                    th.text-center Commissioner
                                     th.text-center Location
                                     th.text-center Awards
+                                    th.text-center Difficult
                                     th.text-center
                                 each item in missions
                                     tr
                                         td= item.postedBy
                                         td= item.location
                                         td= item.award
+                                        td= item.difficult
                                         td(ng-if="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")
                                             a.btn.btn-primary(href="/missions/details/" + item._id) Details
                                         td(ng-if="vm.identity.isAuthorizedForRole('admin')")
