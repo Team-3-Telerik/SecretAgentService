@@ -25,7 +25,7 @@ module.exports = {
                                 if(err){
                                     console.log('Get commissioner failed: ' + err);
                                 }
-                                
+
                                 cachedAgents = agents.length;
 
                                 if(!cachedMissions){
