@@ -23,7 +23,7 @@ block main-content
                                     td= item.username
                                     td= item.missions.length
                                     td(ng-if="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")
-                                        a.btn.btn-primary(href="/missions/details/" + item._id) Details
+                                        a.btn.btn-primary(href="/users/details/" + item._id) Details
                                     td(ng-if="vm.identity.isAuthorizedForRole('admin')")
                                         button.btn.btn-danger(ng-click='vm.deleteUser($event)' data-value="" + item._id data-adress="agents") Delete
                                     td(ng-show="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")

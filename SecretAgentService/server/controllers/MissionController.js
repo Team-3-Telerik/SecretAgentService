@@ -72,6 +72,7 @@ module.exports = {
                     console.log('Get all mission failed: ' + err);
                     return;
                 }
+                console.log(mission);
 
                 res.render('../views/missions/mission-details', {mission: mission[0], currentUser: req.user});
             });
