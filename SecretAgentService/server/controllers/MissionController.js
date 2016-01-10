@@ -76,6 +76,9 @@ module.exports = {
                 res.render('../views/missions/mission-details', {mission: mission[0], currentUser: req.user});
             });
         }
+        else {
+            res.send({reason: 'You do not have permissions!'})
+        }
     },
     acceptMission: function (req, res) {
         if (req.isAuthenticated() || req.user.roles.indexOf('Agent') > -1) {
@@ -114,6 +117,9 @@ module.exports = {
                 })
             });
         }
+        else {
+            res.send({reason: 'You do not have permissions!'})
+        }
     },
     deleteMission: function (req, res) {
         if (req.user.roles.indexOf('admin') > -1) {
@@ -127,6 +133,9 @@ module.exports = {
                     .send(mission);
                 res.end();
             });
+        }
+        else {
+            res.send({reason: 'You do not have permissions!'})
         }
     }
 };
