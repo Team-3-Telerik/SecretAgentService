@@ -25,49 +25,6 @@ module.exports = {
                 });
             });
     },
-    getSent : function (req, res, next) {
-        // GET /api/messages/inbox
-        var currentUser = req.user;
-        Message.find({ 'from': currentUser._id })
-            .populate('from to', 'username firstName lastName imageUrl')
-            .exec(function (err, messages) {
-                if (err) {
-                    res.send(err);
-                    return console.log('Messages could not be loaded: ' + err);
-                }
-                // DO NOT MARK AS READ !!!
-                res.send(messages);
-            });
-    },
-    getMessageById: function (req, res, next) {
-        var currentUser = req.user;
-        Message.findOne(
-            {
-                $and:
-                    [
-                        {_id: req.params.id},
-                        { $or:[ {'from': currentUser._id}, {'to': currentUser._id} ] }
-                    ]
-            })
-            .populate('from to', 'username firstName lastName imageUrl')
-            .exec(function (err, message) {
-                if (err) {
-                    res.send(err);
-                    return console.log('Message could not be loaded: ' + err);
-                }
-
-                if (message) {
-                    res.send(message);
-                    // Mark as read
-                    if (!message.read && message.to.username == currentUser.username) {
-                        message.read = true;
-                        message.save();
-                    }
-                } else {
-                    res.status(404).send('Message not found!');
-                }
-            });
-    },
     sendMessage: function (req, res, next) {
         //api/messages/send/:username
         var sender = req.user;
@@ -107,4 +64,4 @@ module.exports = {
             }
         });
     }
-}
+};
