@@ -1,0 +1,22 @@
+extends ../index
+
+block main-content
+    .container
+        .jumbotron
+            h2 Your Messages
+        .panel.panel-info
+            .panel-heading
+                h3.panel-title List of all messages
+            .panel-body
+                table.table.table.text-center
+                    tr.table.text-center
+                        th.text-center From
+                        th.text-center To
+                        th.text-center Message
+                        th.text-center Title
+                    each message in messages
+                        tr
+                            td= message.from.username
+                            td= message.to.username
+                            td= message.title
+                            td= message.content

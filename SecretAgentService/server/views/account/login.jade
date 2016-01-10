@@ -16,5 +16,7 @@
                     a(href="/admin") Admin Panel
                 li(ng-show="identity.isAuthenticated()")
                     a(href="/profile/edit") Edit Profile
+                li(ng-show="identity.isAuthenticated()")
+                    a(href="/messages/inbox") My Messages
                 li
                     a(href="/" ng-click="logout()") Sign Out

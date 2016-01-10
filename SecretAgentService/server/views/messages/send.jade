@@ -1,0 +1,18 @@
+extends ../index
+
+block main-content
+    .container(ng-controller="MessageController as vm")
+        form.form-horizontal(name="sendMessageForm")
+            fieldset
+                legend Send Message
+                .form-group
+                    label.col-md-2.control-label(for="title") Title
+                    .col-md-10
+                        input#title.form-control(type="text", placeholder="Title", ng-model="vm.message.title", required='required')
+                .form-group
+                    label.col-md-2.control-label(for="content") Content
+                    .col-md-10
+                        textarea#content.form-control(rows="4" cols="50",placeholder="Content", ng-model="vm.message.content", required='required')
+                .form-group
+                    .col-lg-10.col-lg-offset-2.pull-right
+                        button.btn.btn-primary(ng-click='vm.sendMesssage(vm.message, sendMessageForm)', ng-disabled='sendMessageForm.$invalid') Send
