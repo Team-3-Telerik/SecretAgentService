@@ -3,8 +3,8 @@
 
     function messageData(data) {
 
-        function sendMessage(message) {
-            return data.post('messages/send', message)
+        function sendMessage(userName, message) {
+            return data.post('messages/send/' + userName, message)
         }
 
         return {

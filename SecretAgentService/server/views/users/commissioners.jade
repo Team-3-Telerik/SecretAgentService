@@ -27,7 +27,7 @@ block main-content
                                     td(ng-if="vm.identity.isAuthorizedForRole('admin')")
                                         button.btn.btn-danger(ng-click='vm.deleteUser($event)' data-value="" + item._id data-adress="commissioners") Delete
                                     td(ng-show="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")
-                                        a.btn.btn-success(href="/messages/send/" + item._id) Send
+                                        a.btn.btn-success(href="/messages/send/" + item.username) Send
         .row.text-center
             ul.pagination
                 - for (var i = 1; i <= clientPages; i++){

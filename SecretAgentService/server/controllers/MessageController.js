@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose');
 var Message = mongoose.model('Message');
 var User = mongoose.model('User');
@@ -5,8 +7,10 @@ var clients = require('../config/socket').clients;
 
 module.exports = {
     getInbox : function (req, res, next) {
+        // GET /api/messages/inbox
         var currentUser = req.user;
         Message.find({ 'to': currentUser._id })
+            .populate('from to', 'username firstName lastName imageUrl')
             .exec(function (err, messages) {
                 if (err) {
                     res.send(err);
@@ -14,7 +18,6 @@ module.exports = {
                 }
 
                 res.send(messages);
-                console.log('Get messages' + messages);
                 // Mark as read after sent
                 messages.forEach(function (m) {
                     m.read = true;
@@ -23,14 +26,16 @@ module.exports = {
             });
     },
     getSent : function (req, res, next) {
+        // GET /api/messages/inbox
         var currentUser = req.user;
         Message.find({ 'from': currentUser._id })
+            .populate('from to', 'username firstName lastName imageUrl')
             .exec(function (err, messages) {
                 if (err) {
                     res.send(err);
                     return console.log('Messages could not be loaded: ' + err);
                 }
-
+                // DO NOT MARK AS READ !!!
                 res.send(messages);
             });
     },
@@ -44,6 +49,7 @@ module.exports = {
                         { $or:[ {'from': currentUser._id}, {'to': currentUser._id} ] }
                     ]
             })
+            .populate('from to', 'username firstName lastName imageUrl')
             .exec(function (err, message) {
                 if (err) {
                     res.send(err);
@@ -62,42 +68,8 @@ module.exports = {
                 }
             });
     },
-    sendMessage: function (req, res) {
-        if (req.isAuthenticated() || req.user.roles.indexOf('admin') > -1) {
-
-            console.log(req.body);
-            if (req.body.from === req.body.to) {
-                return res.status(404).send({message: 'You cannot send message to your self!'});
-            }
-
-            var data = req.body;
-
-            var newMessage = new Message({
-                title: data.title,
-                content: data.content,
-                date: new Date(),
-                from: data.from,
-                to: data.to,
-                read: false
-            });
-
-            newMessage.save(function (err) {
-                if (err) {
-                    res.status(400).send(err);
-                    return console.log('Error in saving message' + err);
-                }
-
-                res.send(newMessage);
-                if(clients[receiver.username])
-                {
-                    clients[receiver.username].emit('newMessage', { from: sender.username });
-                }
-            });
-        }
-        else {
-            res.send({reason: 'You do not have permissions!'})
-        }
-        /*
+    sendMessage: function (req, res, next) {
+        //api/messages/send/:username
         var sender = req.user;
         User.findOne({ username: req.params.username }).exec(function (err, receiver) {
             if (receiver) {
@@ -134,6 +106,5 @@ module.exports = {
                 res.status(404).send('User not found!');
             }
         });
-        */
     }
-};
+}
