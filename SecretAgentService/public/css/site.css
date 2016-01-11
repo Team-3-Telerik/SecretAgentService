@@ -69,3 +69,54 @@ input.ng-dirty.ng-valid {
   width: 250px;
   height: 300px;
 }
+
+/*chat*/
+#messagesBox {
+  background-image: url('../app/chat/chatBackground.jpg');
+  opacity: 0.8;
+  min-height: 350px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+#messageToSend {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  overflow: inherit;
+  border-bottom-left-radius: 4px;
+
+  resize: none;
+  max-height: 38px;
+}
+#textmessage {
+  color: darkred;
+  font-weight: bold;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+#chat-panel{
+  padding-bottom: 0;
+  padding-top: 0;
+}
+.down-side-chat{
+  margin-bottom: 0;
+}
+#username {
+  font-style: oblique;
+  font-family: Montserrat, sans-serif;
+  font-size: large
+}
+
+#holemsg {
+  position: inherit; right: 0; bottom: 0;
+  padding: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+#chat-btn{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+/*chat*/
