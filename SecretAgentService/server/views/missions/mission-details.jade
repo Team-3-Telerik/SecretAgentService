@@ -10,7 +10,7 @@ block main-content
                 .row
                     img(src=mission.targetPicture, id="target-picture")
             .col-md-4
-                .panel.panel-warning
+                .panel.panel-info
                     .panel-heading
                         h3.panel-title Details
                     .panel-body
@@ -23,6 +23,8 @@ block main-content
                                 strong= mission.missionTarget
                             li.list-group-item Difficult:
                                 strong= mission.difficult
+                            li.list-group-item Award:
+                                strong= mission.award
                             li.list-group-item Description:
                                 strong= mission.description
                             li.list-group-item(id="first" ng-show="vm.currentMission.agent !== undefined") Agent:

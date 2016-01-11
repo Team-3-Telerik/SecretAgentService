@@ -22,7 +22,7 @@ block main-content
                         label.control-label(for='sort') Search Location
                     div
                         input#location-search.form-control(placeholder='Location search', type='text' name="location")
-            .col-md-3
+            .col-md-2
                 .form-group
                     button#search-btn.btn.btn-info(type="submit"  style="margin-top: 25px") Filter
 
@@ -38,14 +38,15 @@ block main-content
                                     th.text-center Location
                                     th.text-center Awards
                                     th.text-center Difficult
-                                    th.text-center
+                                    th.text-center Details
+                                    th.text-center Delete
                                 each item in missions
                                     tr
                                         td= item.postedBy
                                         td= item.location
                                         td= item.award
                                         td= item.difficult
-                                        td(ng-if="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")
+                                        td(ng-if="vm.identity.isAuthenticated()")
                                             a.btn.btn-primary.animsition-link(href="/missions/details/" + item._id, data-animsition-out-class="fade-out-right") Details
                                         td(ng-if="vm.identity.isAuthorizedForRole('admin')")
                                                 button.btn.btn-danger(ng-click='vm.deleteMission($event)' data-value="" + item._id) Delete Mission

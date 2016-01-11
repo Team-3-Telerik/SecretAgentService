@@ -12,8 +12,8 @@ block main-content
                                 th.text-center Picture
                                 th.text-center Agent
                                 th.text-center Missions Taken
-                                th.text-center(ng-show="vm.identity.isAuthorizedForRole('admin')") Delete Agent
-                                th.text-center(ng-show="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')") Details
+                                th.text-center(ng-show="vm.identity.isAuthorizedForRole('admin')") Details
+                                th.text-center(ng-show="vm.identity.isAuthenticated()") Delete Agent
                                 th.text-center(ng-show="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')") Send message
                                 th.text-center
                             each item in agents
@@ -22,7 +22,7 @@ block main-content
                                         img.user-img.img-circle.img-responsive(src="" + item.pictureUrl)
                                     td= item.username
                                     td= item.missions.length
-                                    td(ng-if="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')")
+                                    td(ng-if="vm.identity.isAuthenticated()")
                                         a.btn.btn-primary(href="/users/details/" + item._id) Details
                                     td(ng-if="vm.identity.isAuthorizedForRole('admin')")
                                         button.btn.btn-danger(ng-click='vm.deleteUser($event)' data-value="" + item._id data-adress="agents") Delete
