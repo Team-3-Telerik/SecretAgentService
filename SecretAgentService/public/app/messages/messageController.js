@@ -15,7 +15,9 @@
                     .then(
                         function (success) {
                             notifier.success("Message sent successfully!");
-                            // window.location.href = "/messages/inbox";
+                            setInterval(function () {
+                                window.location.href = "/messages/outbox";
+                            }, 500);
                         },
                         function (error) {
                             notifier.error(error.message);
