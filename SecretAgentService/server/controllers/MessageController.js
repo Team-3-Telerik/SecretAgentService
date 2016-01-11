@@ -15,7 +15,7 @@ module.exports = {
                     res.send(err);
                     return console.log('Messages could not be loaded: ' + err);
                 }
-
+                console.log(messages);
                 // res.send(messages);
                 res.render('../views/messages/inbox', {
                     messages: messages,

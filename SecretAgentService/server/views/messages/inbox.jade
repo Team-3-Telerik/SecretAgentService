@@ -2,21 +2,25 @@ extends ../index
 
 block main-content
     .container
-        .jumbotron
-            h2 Your Messages
-        .panel.panel-info
-            .panel-heading
-                h3.panel-title List of all messages
-            .panel-body
-                table.table.table.text-center
-                    tr.table.text-center
-                        th.text-center From
-                        th.text-center To
-                        th.text-center Message
-                        th.text-center Title
-                    each message in messages
-                        tr
-                            td= message.from.username
-                            td= message.to.username
-                            td= message.title
-                            td= message.content
+        .jumbotron.text-center
+            h3 Your Messages
+        ul.nav.nav-tabs
+            - for (var i = 0; i < messages.length; i++){
+            if i === 0
+                li.active
+                    a.btn-info(href='#' + messages[i].from.username, data-toggle='tab', aria-expanded='true')= messages[i].from.username
+            else
+                li
+                    a.btn-info(href='#' + messages[i].from.username , data-toggle='tab', aria-expanded='true')= messages[i].from.username
+            -}
+        #myTabContent.tab-content
+            - for (var i = 0; i < messages.length; i++){
+            if i == 0
+                .jumbotron.tab-pane.fade.active.in(id=messages[i].from.username)
+                    h4= messages[i].title
+                    p= messages[i].content
+            else
+                .jumbotron.tab-pane.fade(id=messages[i].from.username)
+                    h4= messages[i].title
+                    p= messages[i].content
+            -}
