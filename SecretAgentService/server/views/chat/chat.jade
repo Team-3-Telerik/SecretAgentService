@@ -10,7 +10,7 @@ block main-content
                         .row
                             #messagesBox.col-md-12
                         .row
-                            form#target(dataUser=currentUser.username)
+                            form#target(dataUser=currentUser.username, imgUser=currentUser.pictureUrl)
                                 .form-group
                                     textarea#messageToSend.col-md-10(placeholder='Message')
                                     input.btn.btn-primary.col-md-2(type="Submit" value="Send")

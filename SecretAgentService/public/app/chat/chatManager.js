@@ -1,7 +1,8 @@
 var chatManager = function () {
 
-    const CHANEL_NAME = 'agentServices_chat',
-        USER_NAME = $('#target').attr('dataUser');
+    const CHANEL_NAME = 'bestAgentServices_chat',
+        USER_NAME = $('#target').attr('dataUser'),
+        USER_PICTURE = $('#target').attr('imgUser');
 
     var pubNub = PUBNUB.init({
         subscribe_key: 'sub-c-a9f92646-8baf-11e5-a2e7-0619f8945a4f',
@@ -75,7 +76,8 @@ var chatManager = function () {
         var messageObj = {
             username: username,
             message: message,
-            userNameColor: userNameColor
+            userNameColor: userNameColor,
+            userPic: USER_PICTURE
         };
 
         pubNub.publish({
