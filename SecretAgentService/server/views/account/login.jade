@@ -17,6 +17,8 @@
                 li(ng-show="identity.isAuthenticated()")
                     a(href="/profile/edit") Edit Profile
                 li(ng-show="identity.isAuthenticated()")
-                    a(href="/messages/inbox") My Messages
+                    a(href="/messages/inbox") Inbox messages
+                li(ng-show="identity.isAuthenticated()")
+                    a(href="/messages/outbox") Outbox messages
                 li
                     a(href="/" ng-click="logout()") Sign Out

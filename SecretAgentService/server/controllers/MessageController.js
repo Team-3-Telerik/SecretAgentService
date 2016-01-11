@@ -15,7 +15,7 @@ module.exports = {
                     res.send(err);
                     return console.log('Messages could not be loaded: ' + err);
                 }
-                console.log(messages);
+
                 // res.send(messages);
                 res.render('../views/messages/inbox', {
                     messages: messages,
@@ -25,6 +25,23 @@ module.exports = {
                 messages.forEach(function (m) {
                     m.read = true;
                     m.save();
+                });
+            });
+    },
+    getOutbox: function (req, res) {
+        var currentUser = req.user;
+        Message.find({ 'from': currentUser._id })
+            .populate('from to')
+            .exec(function (err, messages) {
+                if (err) {
+                    res.send(err);
+                    return console.log('Messages could not be loaded: ' + err);
+                }
+                console.log(messages);
+                // res.send(messages);
+                res.render('../views/messages/outbox', {
+                    messages: messages,
+                    currentUser: req.user
                 });
             });
     },

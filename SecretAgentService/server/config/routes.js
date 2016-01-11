@@ -35,6 +35,7 @@ module.exports = function(app) {
     //Messages
     app.all('/messages/*', auth.isAuthenticated)
         .get('/messages/inbox', controllers.messages.getInbox)
+        .get('/messages/outbox', controllers.messages.getOutbox)
         .get('/messages/send/:username', function (req, res) {
             res.render('../views/messages/send', {currentUser: req.user});
         })
