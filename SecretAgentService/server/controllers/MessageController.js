@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose');
 var Message = mongoose.model('Message');
 var User = mongoose.model('User');
@@ -5,17 +7,20 @@ var clients = require('../config/socket').clients;
 
 module.exports = {
     getInbox : function (req, res, next) {
-        // GET /api/messages/inbox
         var currentUser = req.user;
         Message.find({ 'to': currentUser._id })
-            .populate('from to', 'username firstName lastName imageUrl')
+            .populate('from to')
             .exec(function (err, messages) {
                 if (err) {
                     res.send(err);
                     return console.log('Messages could not be loaded: ' + err);
                 }
 
-                res.send(messages);
+                // res.send(messages);
+                res.render('../views/messages/inbox', {
+                    messages: messages,
+                    currentUser: req.user
+                });
                 // Mark as read after sent
                 messages.forEach(function (m) {
                     m.read = true;
@@ -23,51 +28,24 @@ module.exports = {
                 });
             });
     },
-    getSent : function (req, res, next) {
-        // GET /api/messages/inbox
+    getOutbox: function (req, res) {
         var currentUser = req.user;
         Message.find({ 'from': currentUser._id })
-            .populate('from to', 'username firstName lastName imageUrl')
+            .populate('from to')
             .exec(function (err, messages) {
                 if (err) {
                     res.send(err);
                     return console.log('Messages could not be loaded: ' + err);
                 }
-                // DO NOT MARK AS READ !!!
-                res.send(messages);
-            });
-    },
-    getMessageById: function (req, res, next) {
-        var currentUser = req.user;
-        Message.findOne(
-            {
-                $and:
-                    [
-                        {_id: req.params.id},
-                        { $or:[ {'from': currentUser._id}, {'to': currentUser._id} ] }
-                    ]
-            })
-            .populate('from to', 'username firstName lastName imageUrl')
-            .exec(function (err, message) {
-                if (err) {
-                    res.send(err);
-                    return console.log('Message could not be loaded: ' + err);
-                }
-
-                if (message) {
-                    res.send(message);
-                    // Mark as read
-                    if (!message.read && message.to.username == currentUser.username) {
-                        message.read = true;
-                        message.save();
-                    }
-                } else {
-                    res.status(404).send('Message not found!');
-                }
+                console.log(messages);
+                // res.send(messages);
+                res.render('../views/messages/outbox', {
+                    messages: messages,
+                    currentUser: req.user
+                });
             });
     },
     sendMessage: function (req, res, next) {
-        //api/messages/send/:username
         var sender = req.user;
         User.findOne({ username: req.params.username }).exec(function (err, receiver) {
             if (receiver) {
