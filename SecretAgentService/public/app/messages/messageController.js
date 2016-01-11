@@ -10,7 +10,7 @@
             if (sendMessageForm.$valid) {
                 var toUser = window.location.href.split('/');
                 var name = toUser[5];
-                console.log(message);
+
                 messageData.sendMessage(name, message)
                     .then(
                         function (success) {

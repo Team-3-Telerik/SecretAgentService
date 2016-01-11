@@ -9,7 +9,7 @@ module.exports = {
     getInbox : function (req, res, next) {
         var currentUser = req.user;
         Message.find({ 'to': currentUser._id })
-            .populate('from to', 'username firstName lastName imageUrl')
+            .populate('from to')
             .exec(function (err, messages) {
                 if (err) {
                     res.send(err);
