@@ -21,7 +21,7 @@ var chatManager = function () {
                 messages = messages[0];
                 for (var i = 0; i < messages.length; i++) {
                     if (messages[i].username == USER_NAME) {
-                        messages[i].userNameColor = "#00ff00";
+                        messages[i].userNameColor = "#60199E";
                     }
                     publisher.displayMessage(messages[i]);
                 }
@@ -58,7 +58,7 @@ var chatManager = function () {
             channel: CHANEL_NAME,
             message: function (message) {
                 if (message.username == USER_NAME) {
-                    message.userNameColor = "#00ff00";
+                    message.userNameColor = "#ED7C25";
                 }
 
                 publisher.displayMessage(message);
