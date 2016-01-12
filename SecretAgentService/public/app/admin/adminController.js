@@ -51,8 +51,8 @@
                 {field: "username", title: 'Username'},
                 {field: "email", title: 'Email'},
                 {field: 'roles', title: 'Role'},
-                {field: 'password', title: 'Password'},
-                { command: ["edit", "destroy"], title: "&nbsp;", width: "250px" }
+                {field: 'hashPass', title: 'Password', hidden: true},
+                { command: ["edit", "destroy"], title: "&nbsp;", width: "200px" }
             ],
             editable: "popup",
             toolbar: ["create"],
