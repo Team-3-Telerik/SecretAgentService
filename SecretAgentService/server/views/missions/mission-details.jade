@@ -24,7 +24,7 @@ block main-content
                             li.list-group-item Difficult:
                                 strong= mission.difficult
                             li.list-group-item Award:
-                                strong= mission.award
+                                strong= '$ ' + mission.award
                             li.list-group-item Description:
                                 strong= mission.description
                             li.list-group-item(id="first" ng-show="vm.currentMission.agent !== undefined") Agent:

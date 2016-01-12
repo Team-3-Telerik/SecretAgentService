@@ -38,13 +38,18 @@ block main-content
                                     th.text-center Location
                                     th.text-center Awards
                                     th.text-center Difficult
+<<<<<<< HEAD
                                     th(ng-if="vm.identity.isAuthenticated()").text-center Details
                                     th(ng-if="vm.identity.isAuthorizedForRole('admin')").text-center Delete
+=======
+                                    th.text-center Details
+                                    th.text-center(ng-if="vm.identity.isAuthorizedForRole('admin')") Delete
+>>>>>>> 641866c7f7f3d65be3d2e72bcaaf1974e85def58
                                 each item in missions
                                     tr
                                         td= item.postedBy
                                         td= item.location
-                                        td= item.award
+                                        td= '$ ' + item.award
                                         td= item.difficult
                                         td(ng-if="vm.identity.isAuthenticated()")
                                             a.btn.btn-primary.animsition-link(href="/missions/details/" + item._id, data-animsition-out-class="fade-out-right") Details
