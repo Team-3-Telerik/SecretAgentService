@@ -1,4 +1,4 @@
-# Team-3-Telerik
+# Events System
 ---
 
 ## Team Members
@@ -30,18 +30,29 @@ Web site for connecting Secret Agents and Commisioners.
 |PUT (for registered)| /api/users | Updates user profile |
 |GET (for registered)| /profile/edit | Loads html section for updating user|
 |GET (public)|/missions|Gets all public missions|
-|GET (for registered))|/missions/add|Loads html section for creating mission|
-|POST (for registered))|/missions/add|Creates a new mission|
-|GET (for registered))|/missions/details/:id|Get mission details|
-|POST (for registered))|/missions/details/:id|Agent accepts the mission|
-|GET (for admin))|/admin|Gets admin panel|
-|DELETE (for admin))|/missions/:id|Deletes the given mission|
-|DELETE (for admin))|/users/:id|Deletes the given user|
-|GET (public))|/users/agents|Gets public information about agents|
-|GET (public))|/users/commissioners|Gets public information about commissioners|
-|GET (for registered))|'/users/details/:id|Gets user details|
-|GET (for registered))|/messages/inbox|Gets all messages to the given user|
-|GET (for registered))|/messages/outbox|Gets all messages sent by the given user|
-|GET (for registered))|'/messages/send/:username|Loads the page for sending messages|
-|POST (for registered))|'/messages/send/:username|Sends message to the given user|
-|GET (for registered))|'/chat|Gets the chat screen|
+|GET (for registered)|/missions/add|Loads html section for creating mission|
+|POST (for registered)|/missions/add|Creates a new mission|
+|GET (for registered)|/missions/details/:id|Get mission details|
+|POST (for registered)|/missions/details/:id|Agent accepts the mission|
+|GET (for admin)|/admin|Gets admin panel|
+|DELETE (for admin)|/missions/:id|Deletes the given mission|
+|DELETE (for admin)|/users/:id|Deletes the given user|
+|GET (public)|/users/agents|Gets public information about agents|
+|GET (public)|/users/commissioners|Gets public information about commissioners|
+|GET (for registered)|/users/details/:id|Gets user details|
+|GET (for registered)|/messages/inbox|Gets all messages to the given user|
+|GET (for registered)|/messages/outbox|Gets all messages sent by the given user|
+|GET (for registered)|/messages/send/:username|Loads the page for sending messages|
+|POST (for registered)|/messages/send/:username|Sends message to the given user|
+|GET (for registered)|/chat|Gets the chat screen|
+|POST (public) |/login|Logs the user into the website|
+|POST (for registered)|/logout|Logs out the user|
+|GET (public) |/ |Shows the homescreen|
+
+- - - - 
+
+###### Repo of Team-3-Telerik [Link to GitHub](https://github.com/Team-3-Telerik/SecretAgentService)
+
+- - - -
+
+###### Telereik-Academy Season 2015-2016 
