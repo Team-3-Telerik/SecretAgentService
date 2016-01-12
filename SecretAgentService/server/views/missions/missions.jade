@@ -38,13 +38,9 @@ block main-content
                                     th.text-center Location
                                     th.text-center Awards
                                     th.text-center Difficult
-<<<<<<< HEAD
                                     th(ng-if="vm.identity.isAuthenticated()").text-center Details
                                     th(ng-if="vm.identity.isAuthorizedForRole('admin')").text-center Delete
-=======
-                                    th.text-center Details
-                                    th.text-center(ng-if="vm.identity.isAuthorizedForRole('admin')") Delete
->>>>>>> 641866c7f7f3d65be3d2e72bcaaf1974e85def58
+
                                 each item in missions
                                     tr
                                         td= item.postedBy
