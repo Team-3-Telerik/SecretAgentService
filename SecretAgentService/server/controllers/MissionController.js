@@ -57,7 +57,6 @@ module.exports = {
                     Mission.find({}).exec(function (err, allMissions) {
                         clientPages = Math.ceil(allMissions.length / 10);
                         res.render('../views/missions/missions', {missions: missions, currentUser: req.user, clientPages: clientPages});
-                        console.log('here');
                     })
                 }
                 else {

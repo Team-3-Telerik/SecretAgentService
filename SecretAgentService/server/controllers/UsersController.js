@@ -28,7 +28,6 @@ module.exports = {
     updateUser: function (req, res, next) {
         if (req.user._id == req.body._id || req.user.roles.indexOf('admin') > -1) {
             var updatedUserData = req.body;
-            console.log(updatedUserData);
             if (updatedUserData.password && updatedUserData.password.length > 0) {
                 updatedUserData.salt = encryption.generateSalt();
                 updatedUserData.hashPass = encryption.generateHashedPassword(updatedUserData.salt, updatedUserData.password);
@@ -69,7 +68,7 @@ module.exports = {
                             console.log('Get all users failed: ' + err);
                             return;
                         }
-                        console.log(missions);
+                        
                         res.render('../views/users/userDetails', {
                             user: user[0],
                             userMissions: missions,

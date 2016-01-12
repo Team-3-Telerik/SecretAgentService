@@ -16,7 +16,6 @@ module.exports = {
                     return console.log('Messages could not be loaded: ' + err);
                 }
 
-                // res.send(messages);
                 res.render('../views/messages/inbox', {
                     messages: messages,
                     currentUser: req.user
@@ -37,8 +36,7 @@ module.exports = {
                     res.send(err);
                     return console.log('Messages could not be loaded: ' + err);
                 }
-                console.log(messages);
-                // res.send(messages);
+
                 res.render('../views/messages/outbox', {
                     messages: messages,
                     currentUser: req.user
