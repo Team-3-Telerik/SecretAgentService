@@ -45,6 +45,10 @@ module.exports = {
     },
     sendMessage: function (req, res, next) {
         var sender = req.user;
+        if (!Object.keys(sender).length) {
+            return res.status(400)
+                .send({message: 'Sender is not valid!'});
+        }
         User.findOne({ username: req.params.username }).exec(function (err, receiver) {
             if (receiver) {
 

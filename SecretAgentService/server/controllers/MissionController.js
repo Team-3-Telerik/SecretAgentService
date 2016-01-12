@@ -10,6 +10,10 @@ module.exports = {
     createMission: function (req, res) {
         if (req.isAuthenticated() || req.user.roles.indexOf('admin') > -1) {
             var newMission = req.body;
+            if (!Object.keys(newMission).length) {
+                return res.status(400)
+                    .send({message: 'The request is invalid!'});
+            }
             Mission.create(newMission, function (err, mission) {
                 if (err) {
                     console.log('Create mission failed: ' + err);

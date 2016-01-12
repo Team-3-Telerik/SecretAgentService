@@ -7,6 +7,11 @@ var User = require('mongoose').model('User'),
 module.exports = {
     createUser: function (req, res, next) {
         var newUserData = req.body;
+        if (!Object.keys(newUserData).length) {
+            console.log('Here');
+            return res.status(400)
+                .send({message: 'The request is not valid!'});
+        }
         newUserData.salt = encryption.generateSalt();
         newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
         User.create(newUserData, function (err, user) {
