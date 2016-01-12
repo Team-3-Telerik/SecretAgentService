@@ -38,8 +38,8 @@ block main-content
                                     th.text-center Location
                                     th.text-center Awards
                                     th.text-center Difficult
-                                    th.text-center Details
-                                    th.text-center Delete
+                                    th(ng-if="vm.identity.isAuthenticated()").text-center Details
+                                    th(ng-if="vm.identity.isAuthorizedForRole('admin')").text-center Delete
                                 each item in missions
                                     tr
                                         td= item.postedBy
@@ -54,7 +54,7 @@ block main-content
             ul.pagination
                 - for (var i = 1; i <= clientPages; i++){
                 li
-                    a(href='/missions?page=' + i)= i
+                    a.animsition-link(href='/missions?page=' + i, data-animsition-in-class="fade-in-up")= i
                 -}
 
 
