@@ -1,6 +1,5 @@
 var supertest = require("supertest");
 var should = require("should");
-var jade = require('jade');
 var server = supertest.agent("http://localhost:3000");
 
 describe("Message inbox",function(){
@@ -79,7 +78,7 @@ describe("Message inbox",function(){
                 done();
             });
     });
-
+    /*
     it("should send the message",function(done){
         server
             .post("/messages/send/JamesBond")
@@ -90,13 +89,14 @@ describe("Message inbox",function(){
                 done();
             });
     });
-
+    */
     function loginUser() {
         return function(done) {
             server
                 .post('/login')
                 .send({ username: 'ivaylo.kenov', password: 'Ivaylo' })
                 .expect(200)
+                .expect({success:true})
                 .end(function(err,res){
                     res.status.should.equal(200);
                     done();
