@@ -85,6 +85,7 @@ describe("Message inbox",function(){
                 done();
             });
     });
+
     it('delete user', deleteUser());
     function registerUser() {
         return function(done) {
