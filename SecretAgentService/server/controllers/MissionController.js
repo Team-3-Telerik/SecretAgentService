@@ -18,11 +18,37 @@ module.exports = {
                 if (err) {
                     console.log('Create mission failed: ' + err);
                 }
+                //    Test
+                User.find({_id: req.user.id}).exec(function (err, user) {
+                    if (err) {
+                        console.log('Get current user failed: ' + err);
+                        return;
+                    }
 
+                    var currentMission = mission;
+                    var currentUser = user[0];
+
+                    currentMission.agent = currentUser.username;
+                    currentUser.missions.push(currentMission.id);
+
+                    Mission.update({_id: currentMission._id}, currentMission, function (err) {
+                        if (err) {
+                            console.log('Update mission failed: ' + err);
+                        }
+                    });
+                    User.update({_id: currentUser._id}, currentUser, function (err) {
+                        if (err) {
+                            console.log('Update user failed: ' + err);
+                        }
+                    });
+                //    Test end
                 res.status(201)
                     .send(mission);
                 res.end();
-            })
+            });
+
+
+        });
         }
         else {
             res.send({reason: 'You do not have permissions!'})
