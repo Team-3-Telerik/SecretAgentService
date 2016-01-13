@@ -1,4 +1,4 @@
-# Events System
+# Team-3-Telerik
 ---
 
 ## Team Members
