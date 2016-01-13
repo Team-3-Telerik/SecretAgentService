@@ -1,4 +1,4 @@
-var usersController = require('../controllers/usersController');
+var usersController = require('../controllers/UsersController');
 var messageController = require('../controllers/MessageController');
 var missionController = require('../controllers/MissionController');
 var adminController = require('../controllers/AdminController');
