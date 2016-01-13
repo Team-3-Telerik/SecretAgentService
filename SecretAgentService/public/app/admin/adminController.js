@@ -29,7 +29,7 @@
                 model: {
                     id: "_id",
                     fields: {
-                        url: {type : "string"},
+                        pictureUrl: {type : "string"},
                         username: {type: "string", validation: { required: true } },
                         email: {type: "string", validation: { required: true } },
                         roles: {type: "string", validation: { required: true }},
@@ -51,7 +51,7 @@
                 {field: "username", title: 'Username'},
                 {field: "email", title: 'Email'},
                 {field: 'roles', title: 'Role'},
-                {field: 'hashPass', title: 'Password', hidden: true},
+                {field: 'password', title: 'Password', hidden: true},
                 { command: ["edit", "destroy"], title: "&nbsp;", width: "200px" }
             ],
             editable: "popup",
