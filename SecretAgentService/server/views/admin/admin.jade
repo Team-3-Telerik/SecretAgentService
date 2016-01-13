@@ -1,7 +1,7 @@
 extends ../index
 
 block main-content
-    .container
+    .container(ng-controller="AdminController as vm")
         .jumbotron.text-center
             h2 Rule over agents and commissioners
             .row
@@ -11,3 +11,4 @@ block main-content
                     a.btn.btn-primary.btn-lg(href="users/commissioners") Manage Commissioners
                 .col-md-4
                     a.btn.btn-primary.btn-lg(href="missions") Manage Mission
+            div(kendo-grid k-options="vm.gridOptions" style="margin-top: 20px")

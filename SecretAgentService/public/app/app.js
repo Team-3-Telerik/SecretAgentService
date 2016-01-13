@@ -30,7 +30,7 @@
     angular.module('app.directives', []);
     angular.module('app.filters', []);
     angular.module('app.controllers', ['app.services']);
-    angular.module('app', ['ngResource', 'ngRoute', 'app.services', 'app.directives', 'app.filters', 'app.controllers'])
+    angular.module('app', ['ngResource', 'ngRoute', 'app.services', 'app.directives', 'app.filters', 'app.controllers', 'kendo.directives'])
         .config([config])
         .run(['$rootScope', '$location', run])
         .value('toastr', toastr)

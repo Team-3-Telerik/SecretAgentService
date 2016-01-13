@@ -6,7 +6,13 @@ var User = require('mongoose').model('User'),
 
 module.exports = {
     createUser: function (req, res, next) {
-        var newUserData = req.body;
+        var newUserData;
+        if(req.body.models){
+            newUserData  = req.body.models[0]
+        }else {
+            newUserData = req.body;
+        }
+
         if (!Object.keys(newUserData).length) {
             console.log('Here');
             return res.status(400)
@@ -31,6 +37,7 @@ module.exports = {
         });
     },
     updateUser: function (req, res, next) {
+        console.log(req.body);
         if (req.user._id == req.body._id || req.user.roles.indexOf('admin') > -1) {
             var updatedUserData = req.body;
             if (updatedUserData.password && updatedUserData.password.length > 0) {
@@ -84,8 +91,16 @@ module.exports = {
 
     },
     deleteUser: function (req, res) {
+        var id;
+        if(req.body._id){
+            id = req.body._id
+        }
+        else{
+            id = req.params.id
+        }
+
         if (req.user.roles.indexOf('admin') > -1) {
-            User.remove({_id: req.params.id}, function (err, user) {
+            User.remove({_id: id}, function (err, user) {
                 if (err) {
                     console.log('Delete user by id failed: ' + err);
                     return;
