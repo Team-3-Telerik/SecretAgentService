@@ -31,7 +31,7 @@ module.exports = {
                     res.status(400);
                     return res.send({reason: err.toString()});
                 }
-
+                
                 res.send(user);
             })
         });

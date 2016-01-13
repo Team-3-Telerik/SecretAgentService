@@ -4,6 +4,12 @@ var server = supertest.agent("http://localhost:3000");
 
 describe("Message inbox",function(){
 
+    var user = {
+        username: 'TestUser',
+        password: '123456',
+        email: 'test@gmail.com',
+        roles: 'admin'};
+
     it("should return status code 403 if user is not authorized",function(done){
         server
             .get("/messages/inbox")
@@ -15,7 +21,8 @@ describe("Message inbox",function(){
             });
     });
 
-    it('login', loginUser());
+    it('register user', registerUser());
+    //it('login', loginUser());
     it("should return status code 200 on inbox",function(done){
         server
             .get("/messages/inbox")
@@ -51,7 +58,7 @@ describe("Message inbox",function(){
 
     it("should not allow to send a message to yourself",function(done){
         server
-            .post("/messages/send/ivaylo.kenov")
+            .post("/messages/send/" + user.username)
             .expect(404)
             .end(function(err,res){
                 res.status.should.equal(404);
@@ -78,27 +85,30 @@ describe("Message inbox",function(){
                 done();
             });
     });
-    /*
-    it("should send the message",function(done){
-        server
-            .post("/messages/send/JamesBond")
-            .send({title: 'from Mocha', content: 'Unit test'})
-            .expect(200)
-            .end(function(err,res){
-                res.status.should.equal(200);
-                done();
-            });
-    });
-    */
-    function loginUser() {
+    it('delete user', deleteUser());
+    function registerUser() {
         return function(done) {
             server
-                .post('/login')
-                .send({ username: 'ivaylo.kenov', password: 'Ivaylo' })
+                .post('/api/users')
+                .send(user)
                 .expect(200)
                 .expect({success:true})
                 .end(function(err,res){
+                    user._id = res.body._id;
                     res.status.should.equal(200);
+                    done();
+                });
+        };
+    }
+    function deleteUser() {
+        return function(done) {
+            server
+                .delete('/users/' + user._id)
+                .send(user)
+                .expect(202)
+                .expect({success:true})
+                .end(function(err,res){
+                    res.status.should.equal(202);
                     done();
                 });
         };
