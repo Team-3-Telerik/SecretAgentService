@@ -2,7 +2,7 @@ var supertest = require("supertest");
 var should = require("should");
 var server = supertest.agent("http://localhost:3000");
 
-describe("Message inbox",function(){
+describe("Mission tests",function(){
 
     var user = {
         username: 'TestUser',
@@ -10,10 +10,29 @@ describe("Message inbox",function(){
         email: 'test@gmail.com',
         roles: 'admin'};
 
-    it("should return status code 403 if user is not authorized",function(done){
+    var mission = {
+        award: 1000,
+        location: 'Sofia',
+        missionTarget: 'Test Target',
+        targetPicture : 'http://www.gibedigital.com/media/1280/unit-test.jpg',
+        postedBy: 'TestUser',
+        difficult: 7,
+        description: 'Some description'};
+
+    it("should return status code 200 accessing all missions",function(done){
         server
-            .get("/messages/inbox")
+            .get("/missions")
             .expect("Content-type",/text-html/)
+            .expect(200)
+            .end(function(err,res){
+                res.status.should.equal(200);
+                done();
+            });
+    });
+
+    it("should not allow access to adding mission if not login",function(done){
+        server
+            .post("/missions/add")
             .expect(403)
             .end(function(err,res){
                 res.status.should.equal(403);
@@ -23,9 +42,9 @@ describe("Message inbox",function(){
 
     it('register user', registerUser());
 
-    it("should return status code 200 on inbox",function(done){
+    it("should return status code 200 on add mission screen",function(done){
         server
-            .get("/messages/inbox")
+            .get("/missions/add")
             .expect("Content-type",/text-html/)
             .expect(200)
             .end(function(err,res){
@@ -34,9 +53,22 @@ describe("Message inbox",function(){
             });
     });
 
-    it("should return status code 200 on outbox",function(done){
+    it("should return status code 201 on adding a mission",function(done){
         server
-            .get("/messages/outbox")
+            .post('/missions/add')
+            .send(mission)
+            .expect(201)
+            .expect({success:true})
+            .end(function(err,res){
+                mission._id = res.body._id;
+                res.status.should.equal(201);
+                done();
+            });
+    });
+
+    it("should return status code 200 on getting mission details",function(done){
+        server
+            .get("/missions/details/" + mission._id)
             .expect("Content-type",/text-html/)
             .expect(200)
             .end(function(err,res){
@@ -45,43 +77,14 @@ describe("Message inbox",function(){
             });
     });
 
-    it("should return status code 200 on opening the send form",function(done){
+    it("should return status code 202 on deleting a mission",function(done){
         server
-            .get("/messages/send/testname")
-            .expect("Content-type",/text-html/)
-            .expect(200)
+            .delete('/missions/' + mission._id)
+            .send(mission)
+            .expect(202)
+            .expect({success:true})
             .end(function(err,res){
-                res.status.should.equal(200);
-                done();
-            });
-    });
-
-    it("should not allow to send a message to yourself",function(done){
-        server
-            .post("/messages/send/" + user.username)
-            .expect(404)
-            .end(function(err,res){
-                res.status.should.equal(404);
-                done();
-            });
-    });
-
-    it("should not allow to send to an invalid user",function(done){
-        server
-            .post("/messages/send/invalid")
-            .expect(404)
-            .end(function(err,res){
-                res.status.should.equal(404);
-                done();
-            });
-    });
-
-    it("should retun bad request with invalid message",function(done){
-        server
-            .post("/messages/send/JamesBond")
-            .expect(400)
-            .end(function(err,res){
-                res.status.should.equal(400);
+                res.status.should.equal(202);
                 done();
             });
     });
