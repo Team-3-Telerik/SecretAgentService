@@ -13,7 +13,7 @@ block main-content
                                 th.text-center Commissioner
                                 th.text-center Missions Offered
                                 th.text-center(ng-show="vm.identity.isAuthorizedForRole('admin')") Delete Commissioner
-                                th.text-center(ng-show="vm.identity.isAuthenticated()") Delete Commissioner
+                                th.text-center(ng-show="vm.identity.isAuthenticated()") Details
                                 th.text-center(ng-show="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')") Send message
                                 th.text-center
                             each item in commissioners

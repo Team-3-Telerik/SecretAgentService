@@ -12,8 +12,8 @@ block main-content
                                 th.text-center Picture
                                 th.text-center Agent
                                 th.text-center Missions Taken
-                                th.text-center(ng-show="vm.identity.isAuthorizedForRole('admin')") Details
-                                th.text-center(ng-show="vm.identity.isAuthenticated()") Delete Agent
+                                th.text-center(ng-show="vm.identity.isAuthorizedForRole('admin')") Delete Agent
+                                th.text-center(ng-show="vm.identity.isAuthenticated()") Details
                                 th.text-center(ng-show="vm.identity.isAuthenticated() && !vm.identity.isAuthorizedForRole('admin')") Send message
                                 th.text-center
                             each item in agents
