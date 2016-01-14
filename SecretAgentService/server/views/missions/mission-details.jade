@@ -32,5 +32,5 @@ block main-content
                             if mission.agent
                                 li.list-group-item(id="second") Agent:
                                     strong= mission.agent
-        button.btn.btn-success(ng-click="vm.acceptMission()") Accept mission
+        button.btn.btn-success(ng-show="vm.identity.isAuthorizedForRole('Agent')" ng-click="vm.acceptMission()") Accept mission
 
